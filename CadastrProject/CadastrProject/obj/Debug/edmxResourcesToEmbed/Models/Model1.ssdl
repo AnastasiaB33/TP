@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CadastrBDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cadastre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Value" Type="float" Nullable="false" />
+    <Property Name="Square" Type="float" Nullable="false" />
+    <Property Name="Date_registration" Type="date" Nullable="false" />
+    <Property Name="IDGroup" Type="int" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nchar" MaxLength="30" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Number_cadastre" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Request__Number___145C0A3F">
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cadastre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Number_cadastre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IDGroup">
+    <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cadastre">
+        <PropertyRef Name="IDGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище CadastrBDModelContainer">
+    <EntitySet Name="Cadastre" EntityType="Self.Cadastre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Request__Number___145C0A3F" Association="Self.FK__Request__Number___145C0A3F">
+      <End Role="Cadastre" EntitySet="Cadastre" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="IDGroup" Association="Self.IDGroup">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
