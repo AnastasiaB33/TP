@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище CadastrBDModelContainer" CdmEntityContainer="CadastrBDEntities1">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CadastrBDModelContainer" CdmEntityContainer="CadastrBDEntities">
     <EntitySetMapping Name="Cadastre">
       <EntityTypeMapping TypeName="CadastrBDModel.Cadastre">
         <MappingFragment StoreEntitySet="Cadastre">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IDType" ColumnName="IDType" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Square" ColumnName="Square" />
-          <ScalarProperty Name="Date_registration" ColumnName="Date_registration" />
+          <ScalarProperty Name="Date_application" ColumnName="Date_application" />
+          <ScalarProperty Name="IDOwner" ColumnName="IDOwner" />
           <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+          <ScalarProperty Name="Date_registration" ColumnName="Date_registration" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -23,13 +26,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Request">
-      <EntityTypeMapping TypeName="CadastrBDModel.Request">
-        <MappingFragment StoreEntitySet="Request">
+    <EntitySetMapping Name="Owner">
+      <EntityTypeMapping TypeName="CadastrBDModel.Owner">
+        <MappingFragment StoreEntitySet="Owner">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Number_cadastre" ColumnName="Number_cadastre" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Inn" ColumnName="Inn" />
+          <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="CadastrBDModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeCadastr">
+      <EntityTypeMapping TypeName="CadastrBDModel.TypeCadastr">
+        <MappingFragment StoreEntitySet="TypeCadastr">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

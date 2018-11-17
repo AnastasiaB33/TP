@@ -2,71 +2,18 @@
 @{
     ViewBag.Title = "Главная";
 }
-<h2>Зарегистрированные объекты</h2>
-<ul id="groups">
-    @foreach (var item in (IEnumerable<CadastrProject.Models.Group>)ViewData["Groups"])
-    {
-        <li>
-            <div>
-                @Html.ActionLink(item.Type, "Index", new { id = item.Id })
-            </div>
-        </li>
-    }
-</ul>
-<p>
-    @Html.ActionLink("Добавить запись", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IDGroup)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Value)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Square)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date_registration)
-        </th>
-        <th> Action</th>
-    </tr>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Меню</h2>
+                @Html.ActionLink("Просмотреть зарегистрированные объекты", "CadastreObject") 
+             <br>
+                @Html.ActionLink("Данные владельцев", "OwnerViews")
+            <br>
+                @Html.ActionLink("Просмотреть заявки", "пока нету") 
+         
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Group.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Value)
-            </td>
-            <th>
-                @Html.DisplayFor(Item => item.Square)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date_registration)
-            </td>
-            <td>
 
-                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+    
 
-</table>
+

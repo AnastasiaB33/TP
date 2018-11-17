@@ -9,8 +9,8 @@ namespace CadastrProject.DAO
 {
     public class GroupDAO
     {
-        private CadastrBDEntities1 _entities = new CadastrBDEntities1();
-        public IEnumerable<Models.Group> GetAllGroups()
+        private CadastrBDEntities _entities = new CadastrBDEntities();
+        public IEnumerable<Models.Group> GetAllGroup()
         {
             return (from c in _entities.Group select c);
         }

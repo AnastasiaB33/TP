@@ -5,42 +5,50 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Type" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="IDType" Type="int" Nullable="false" />
     <Property Name="Address" Type="nchar" MaxLength="50" Nullable="false" />
     <Property Name="Value" Type="float" Nullable="false" />
     <Property Name="Square" Type="float" Nullable="false" />
-    <Property Name="Date_registration" Type="date" Nullable="false" />
+    <Property Name="Date_application" Type="date" Nullable="false" />
+    <Property Name="IDOwner" Type="int" Nullable="false" />
     <Property Name="IDGroup" Type="int" />
+    <Property Name="IDStatus" Type="int" Nullable="false" />
+    <Property Name="Date_registration" Type="date" />
   </EntityType>
   <EntityType Name="Group">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Type" Type="nchar" MaxLength="30" />
+    <Property Name="Type" Type="nchar" MaxLength="35" />
     <Property Name="Description" Type="text" />
   </EntityType>
-  <EntityType Name="Request">
+  <EntityType Name="Owner">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Date" Type="date" Nullable="false" />
-    <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="Number_cadastre" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Surname" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Inn" Type="nchar" MaxLength="12" Nullable="false" />
+    <Property Name="Passport" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="Phone" Type="int" Nullable="false" />
+    <Property Name="Mail" Type="nchar" MaxLength="20" />
   </EntityType>
-  <Association Name="FK__Request__Number___145C0A3F">
-    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="1" />
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cadastre">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Request">
-        <PropertyRef Name="Number_cadastre" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeCadastr">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="35" Nullable="false" />
+  </EntityType>
   <Association Name="IDGroup">
     <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
     <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
@@ -53,16 +61,62 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="IDOwner">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cadastre">
+        <PropertyRef Name="IDOwner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IDStatus">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cadastre">
+        <PropertyRef Name="IDStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IDType">
+    <End Role="TypeCadastr" Type="Self.TypeCadastr" Multiplicity="1" />
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeCadastr">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cadastre">
+        <PropertyRef Name="IDType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище CadastrBDModelContainer">
     <EntitySet Name="Cadastre" EntityType="Self.Cadastre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Request__Number___145C0A3F" Association="Self.FK__Request__Number___145C0A3F">
-      <End Role="Cadastre" EntitySet="Cadastre" />
-      <End Role="Request" EntitySet="Request" />
-    </AssociationSet>
+    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeCadastr" EntityType="Self.TypeCadastr" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="IDGroup" Association="Self.IDGroup">
       <End Role="Group" EntitySet="Group" />
+      <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+    <AssociationSet Name="IDOwner" Association="Self.IDOwner">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+    <AssociationSet Name="IDStatus" Association="Self.IDStatus">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+    <AssociationSet Name="IDType" Association="Self.IDType">
+      <End Role="TypeCadastr" EntitySet="TypeCadastr" />
       <End Role="Cadastre" EntitySet="Cadastre" />
     </AssociationSet>
   </EntityContainer>

@@ -10,7 +10,7 @@ namespace CadastrProject.DAO
     public class CadastreDAO
     {
         //создаем экземпляр класса сущностей
-        private CadastrBDEntities1 _entities = new CadastrBDEntities1();
+        private CadastrBDEntities _entities = new CadastrBDEntities();
 
         public IEnumerable<Cadastre> GetAllCadastrs()
         {
@@ -56,10 +56,13 @@ namespace CadastrProject.DAO
             try
             {
                 //редактирование записи в таблице
-                originalCadastrs.Type = Cadastrs.Type;
+                originalCadastrs.IDType = Cadastrs.IDType; 
                 originalCadastrs.Address = Cadastrs.Address;
                 originalCadastrs.Value = Cadastrs.Value;
                 originalCadastrs.Square = Cadastrs.Square;
+                originalCadastrs.Date_application = Cadastrs.Date_application;
+                originalCadastrs.IDOwner = Cadastrs.IDOwner;
+                originalCadastrs.IDStatus = Cadastrs.IDStatus;
                 originalCadastrs.Date_registration = Cadastrs.Date_registration;
                 _entities.SaveChanges();
             }

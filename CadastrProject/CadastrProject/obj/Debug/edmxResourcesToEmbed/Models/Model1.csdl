@@ -5,46 +5,58 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Type" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IDType" Type="Int32" Nullable="false" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Value" Type="Double" Nullable="false" />
     <Property Name="Square" Type="Double" Nullable="false" />
-    <Property Name="Date_registration" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_application" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IDOwner" Type="Int32" Nullable="false" />
     <Property Name="IDGroup" Type="Int32" />
-    <NavigationProperty Name="Request" Relationship="Self.FK__Request__Number___145C0A3F" FromRole="Cadastre" ToRole="Request" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <Property Name="Date_registration" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Group" Relationship="Self.IDGroup" FromRole="Cadastre" ToRole="Group" />
+    <NavigationProperty Name="Owner" Relationship="Self.IDOwner" FromRole="Cadastre" ToRole="Owner" />
+    <NavigationProperty Name="Status" Relationship="Self.IDStatus" FromRole="Cadastre" ToRole="Status" />
+    <NavigationProperty Name="TypeCadastr" Relationship="Self.IDType" FromRole="Cadastre" ToRole="TypeCadastr" />
   </EntityType>
   <EntityType Name="Group">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Type" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="35" FixedLength="true" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Cadastre" Relationship="Self.IDGroup" FromRole="Group" ToRole="Cadastre" />
   </EntityType>
-  <EntityType Name="Request">
+  <EntityType Name="Owner">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Number_cadastre" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Cadastre" Relationship="Self.FK__Request__Number___145C0A3F" FromRole="Request" ToRole="Cadastre" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Inn" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Passport" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Cadastre" Relationship="Self.IDOwner" FromRole="Owner" ToRole="Cadastre" />
   </EntityType>
-  <Association Name="FK__Request__Number___145C0A3F">
-    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="1" />
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cadastre">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Request">
-        <PropertyRef Name="Number_cadastre" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cadastre" Relationship="Self.IDStatus" FromRole="Status" ToRole="Cadastre" />
+  </EntityType>
+  <EntityType Name="TypeCadastr">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="35" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cadastre" Relationship="Self.IDType" FromRole="TypeCadastr" ToRole="Cadastre" />
+  </EntityType>
   <Association Name="IDGroup">
     <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
     <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
@@ -57,16 +69,62 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CadastrBDEntities1" annotation:LazyLoadingEnabled="true">
+  <Association Name="IDOwner">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cadastre">
+        <PropertyRef Name="IDOwner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IDStatus">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cadastre">
+        <PropertyRef Name="IDStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IDType">
+    <End Role="TypeCadastr" Type="Self.TypeCadastr" Multiplicity="1" />
+    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeCadastr">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cadastre">
+        <PropertyRef Name="IDType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CadastrBDEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cadastre" EntityType="Self.Cadastre" />
     <EntitySet Name="Group" EntityType="Self.Group" />
-    <EntitySet Name="Request" EntityType="Self.Request" />
-    <AssociationSet Name="FK__Request__Number___145C0A3F" Association="Self.FK__Request__Number___145C0A3F">
-      <End Role="Cadastre" EntitySet="Cadastre" />
-      <End Role="Request" EntitySet="Request" />
-    </AssociationSet>
+    <EntitySet Name="Owner" EntityType="Self.Owner" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="TypeCadastr" EntityType="Self.TypeCadastr" />
     <AssociationSet Name="IDGroup" Association="Self.IDGroup">
       <End Role="Group" EntitySet="Group" />
+      <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+    <AssociationSet Name="IDOwner" Association="Self.IDOwner">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+    <AssociationSet Name="IDStatus" Association="Self.IDStatus">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+    <AssociationSet Name="IDType" Association="Self.IDType">
+      <End Role="TypeCadastr" EntitySet="TypeCadastr" />
       <End Role="Cadastre" EntitySet="Cadastre" />
     </AssociationSet>
   </EntityContainer>

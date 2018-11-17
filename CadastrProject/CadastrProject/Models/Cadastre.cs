@@ -14,22 +14,20 @@ namespace CadastrProject.Models
     
     public partial class Cadastre
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cadastre()
-        {
-            this.Request = new HashSet<Request>();
-        }
-    
         public int Id { get; set; }
-        public string Type { get; set; }
+        public int IDType { get; set; }
         public string Address { get; set; }
         public double Value { get; set; }
         public double Square { get; set; }
-        public System.DateTime Date_registration { get; set; }
+        public System.DateTime Date_application { get; set; }
+        public int IDOwner { get; set; }
         public Nullable<int> IDGroup { get; set; }
+        public int IDStatus { get; set; }
+        public Nullable<System.DateTime> Date_registration { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request> Request { get; set; }
         public virtual Group Group { get; set; }
+        public virtual Owner Owner { get; set; }
+        public virtual Status Status { get; set; }
+        public virtual TypeCadastr TypeCadastr { get; set; }
     }
 }
