@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="50aba61636c1434fba19b991eb5139aa" Name="Diagram1">
+      <Diagram DiagramId="6fcd485ad8154fe7a3f8c1128e95fc9d" Name="Diagram1">
         <EntityTypeShape EntityType="CadastrBDModel.Cadastre" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CadastrBDModel.Group" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CadastrBDModel.Owner" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CadastrBDModel.Status" Width="1.5" PointX="7" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CadastrBDModel.TypeCadastr" Width="1.5" PointX="0.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CadastrBDModel.Group" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CadastrBDModel.Owner" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CadastrBDModel.Status" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CadastrBDModel.TypeCadastr" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
         <AssociationConnector Association="CadastrBDModel.IDGroup" ManuallyRouted="false" />
         <AssociationConnector Association="CadastrBDModel.IDOwner" ManuallyRouted="false" />
         <AssociationConnector Association="CadastrBDModel.IDStatus" ManuallyRouted="false" />

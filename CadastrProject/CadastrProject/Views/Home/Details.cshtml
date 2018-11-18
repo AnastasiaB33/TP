@@ -1,0 +1,53 @@
+﻿@model CadastrProject.Models.Cadastre
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2> Детальный просмотр </h2>
+
+<div>
+    <h4>Запись</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDGroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Square)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_application)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDOwner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_registration)
+        </dt>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Вернуться на главную", "Index")
+</p>
+

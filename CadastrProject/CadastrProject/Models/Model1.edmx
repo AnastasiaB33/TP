@@ -10,15 +10,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IDType" Type="int" Nullable="false" />
+          <Property Name="IDType" Type="int" />
           <Property Name="Address" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Value" Type="float" Nullable="false" />
           <Property Name="Square" Type="float" Nullable="false" />
-          <Property Name="Date_application" Type="date" Nullable="false" />
+          <Property Name="Date_application" Type="datetime" Nullable="false" />
           <Property Name="IDOwner" Type="int" Nullable="false" />
-          <Property Name="IDGroup" Type="int" />
+          <Property Name="IDGroup" Type="int" Nullable="false" />
           <Property Name="IDStatus" Type="int" Nullable="false" />
-          <Property Name="Date_registration" Type="date" />
+          <Property Name="Date_registration" Type="datetime" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -55,7 +55,7 @@
           <Property Name="Name" Type="nchar" MaxLength="35" Nullable="false" />
         </EntityType>
         <Association Name="IDGroup">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -91,7 +91,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IDType">
-          <End Role="TypeCadastr" Type="Self.TypeCadastr" Multiplicity="1" />
+          <End Role="TypeCadastr" Type="Self.TypeCadastr" Multiplicity="0..1" />
           <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeCadastr">
@@ -135,15 +135,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDType" Type="Int32" Nullable="false" />
+          <Property Name="IDType" Type="Int32" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Value" Type="Double" Nullable="false" />
           <Property Name="Square" Type="Double" Nullable="false" />
-          <Property Name="Date_application" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_application" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IDOwner" Type="Int32" Nullable="false" />
-          <Property Name="IDGroup" Type="Int32" />
+          <Property Name="IDGroup" Type="Int32" Nullable="false" />
           <Property Name="IDStatus" Type="Int32" Nullable="false" />
-          <Property Name="Date_registration" Type="DateTime" Precision="0" />
+          <Property Name="Date_registration" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Group" Relationship="Self.IDGroup" FromRole="Cadastre" ToRole="Group" />
           <NavigationProperty Name="Owner" Relationship="Self.IDOwner" FromRole="Cadastre" ToRole="Owner" />
           <NavigationProperty Name="Status" Relationship="Self.IDStatus" FromRole="Cadastre" ToRole="Status" />
@@ -188,7 +188,7 @@
           <NavigationProperty Name="Cadastre" Relationship="Self.IDType" FromRole="TypeCadastr" ToRole="Cadastre" />
         </EntityType>
         <Association Name="IDGroup">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -224,7 +224,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IDType">
-          <End Role="TypeCadastr" Type="Self.TypeCadastr" Multiplicity="1" />
+          <End Role="TypeCadastr" Type="Self.TypeCadastr" Multiplicity="0..1" />
           <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeCadastr">

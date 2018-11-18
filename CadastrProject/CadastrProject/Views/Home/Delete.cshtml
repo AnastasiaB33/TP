@@ -1,0 +1,61 @@
+﻿@model CadastrProject.Models.Cadastre
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<h2> Удаление записи </h2>
+
+<h3> Вы уверены, что хотите удалить эту запись? </h3>
+<div>
+    <h4> Запись </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDGroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Square)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_application)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDOwner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_registration)
+        </dt>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться на главную", "Index")
+        </div>
+    }
+</div>
+

@@ -15,13 +15,13 @@ namespace CadastrProject.Models
     public partial class Cadastre
     {
         public int Id { get; set; }
-        public int IDType { get; set; }
+        public Nullable<int> IDType { get; set; }
         public string Address { get; set; }
         public double Value { get; set; }
         public double Square { get; set; }
         public System.DateTime Date_application { get; set; }
         public int IDOwner { get; set; }
-        public Nullable<int> IDGroup { get; set; }
+        public int IDGroup { get; set; }
         public int IDStatus { get; set; }
         public Nullable<System.DateTime> Date_registration { get; set; }
     

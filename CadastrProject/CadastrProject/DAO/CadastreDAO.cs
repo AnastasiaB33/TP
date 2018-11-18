@@ -18,7 +18,7 @@ namespace CadastrProject.DAO
             return (from c in _entities.Cadastre.Include("Group") select c);
         }
 
-        public Group GetGroup(int id)
+        public Group GetGroup(int? id)
         {
             if (id != null) //возращает запись по её Id
                 return (from c in _entities.Group
@@ -34,11 +34,11 @@ namespace CadastrProject.DAO
                     where c.Id == id
                     select c).FirstOrDefault();
         }
-        public bool addCadastrs(int GroupId, Cadastre Cadastrs)
+        public bool addCadastrs(int IDGroup, Cadastre Cadastrs)
         {
             try
             {
-                Cadastrs.Group = GetGroup(GroupId);
+                Cadastrs.Group = GetGroup(IDGroup);
                 //Добавление записи в таблицу Supply
                 _entities.Cadastre.Add(Cadastrs);
                 _entities.SaveChanges();
