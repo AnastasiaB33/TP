@@ -49,6 +49,7 @@
 
     @foreach (var item in Model)
     {
+        if (item.Status.Id==5 ){
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Group.Type)
@@ -82,7 +83,7 @@
             </td>
         </tr>
     }
-
+    }
 </table>
 @Html.ActionLink("Вернуться в главное меню", "Index")
 

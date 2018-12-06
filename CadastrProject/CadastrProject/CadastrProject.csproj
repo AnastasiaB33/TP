@@ -200,6 +200,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OwnerController.cs" />
     <Compile Include="DAO\CadastreDAO.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\GroupDAO.cs" />
@@ -321,11 +322,17 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\CadastreObject.cshtml" />
-    <Content Include="Views\Home\OwnerViews.cshtml" />
+    <Content Include="Views\Owner\OwnerViews.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Owner\Create.cshtml" />
+    <Content Include="Views\Owner\Details.cshtml" />
+    <Content Include="Views\Owner\Edit.cshtml" />
+    <Content Include="Views\Owner\Ok.cshtml" />
+    <Content Include="Views\Owner\Error.cshtml" />
+    <Content Include="Views\Home\CadastreRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,9 @@
 }
 
 <h2>Данные о владельцах</h2>
+<p>
+    @Html.ActionLink("Добавить запись", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -59,11 +62,10 @@
 
                 @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
 
 </table>
-@Html.ActionLink("Вернуться в главное меню", "Index")
+@Html.ActionLink("Вернуться в главное меню", "../Home/Index")
 

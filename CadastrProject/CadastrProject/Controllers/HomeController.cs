@@ -27,11 +27,7 @@ namespace CadastrProject.Controllers
             var records = id == null ? recordsDAO.GetAllCadastrs() : recordsDAO.GetAllCadastrs().Where(x => x.Group.Id == id);
             return View(records);
         }
-        public ActionResult OwnerViews(int? id)
-        {
-               
-            return View(ownerDAO.GetAllOwners());
-        }
+       
 
         //Get:/Home/Details
         public ActionResult Details(int id)
@@ -46,6 +42,7 @@ namespace CadastrProject.Controllers
         }
 
         //GET:/Home/Create
+        [Authorize]
         public ActionResult Create()
         {
             if (!ViewDataSelectList(-1))
@@ -55,6 +52,7 @@ namespace CadastrProject.Controllers
 
         //POST:/Home/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(int IDGroup, [Bind(Exclude = "Id")] Cadastre Cadastrs)
         {
             ViewDataSelectList(IDGroup);
@@ -62,17 +60,18 @@ namespace CadastrProject.Controllers
             try
             {
                 if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, Cadastrs))
-                    return RedirectToAction("Index");
+                    return RedirectToAction("../Owner/Ok");
                 else
-                    return View(Cadastrs);
+                    return View("../Owner/Error");
             }
             catch
             {
-                return View(Cadastrs);
+                return View("Index");
             }
         }
 
         //GET:/Home/Edit
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Cadastre Records = recordsDAO.getCadastrs(id);
@@ -83,23 +82,25 @@ namespace CadastrProject.Controllers
 
         //POST:/Home/Edit
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int IDGroup, Cadastre Cadastrs)
         {
             ViewDataSelectList(-1);
             try
             {
                 if (ModelState.IsValid && recordsDAO.updateCadastrs(IDGroup, Cadastrs))
-                    return RedirectToAction("Index");
+                    return RedirectToAction("../Owner/Ok");
                 else
-                    return View(Cadastrs);
+                    return View("../Owner/Error");
             }
             catch
             {
-                return View(Cadastrs);
+                return View("Index");
             }
         }
 
         //GET:/Home/Delete
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View(recordsDAO.getCadastrs(id));
@@ -107,6 +108,7 @@ namespace CadastrProject.Controllers
 
         //POST:/Home/Delete
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, Cadastre Cadastrss)
         {
             try

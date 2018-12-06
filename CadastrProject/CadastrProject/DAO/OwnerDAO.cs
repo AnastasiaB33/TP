@@ -39,74 +39,56 @@ namespace CadastrProject.DAO
             finally { Disconnect(); }
             return ownerList;
         }
-      /*  public Group GetGroup(int id)
-        {
-            if (id != null) //возращает запись по её Id
-                return (from c in _entities.Group
-                        where c.Id == id
-                        select c).FirstOrDefault();
-            else // возвращает первую запись в таблице
-                return (from c in _entities.Group
-                        select c).FirstOrDefault();
-        }
-        public Cadastre getOwners(int id)
+      
+      /*  public Cadastre getOwners(int id)
         {
             return (from c in _entities.Cadastre.Include("Group")
                     where c.Id == id
                     select c).FirstOrDefault();
-        }
-        public bool addOwners(int GroupId, Owner Owners)
-        {
-            try
-            {
-               Owners.Group = GetGroup(GroupId);
-                //Добавление записи в таблицу Supply
-                _entities.Owner.Add(Owners);
-                _entities.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-        public bool updateOwners(int GroupId, Owner Owners)
-        {
-            Cadastre originalCadastrs = getOwners(Owners.Id);
-            originalCadastrs.Group = GetGroup(GroupId);
-            try
-            {
-                //редактирование записи в таблице
-                originalCadastrs.IDType = Owners.IDType;
-                originalCadastrs.Address = Owners.Address;
-                originalCadastrs.Value = Owners.Value;
-                originalCadastrs.Square = Owners.Square;
-                originalCadastrs.Date_application = Owners.Date_application;
-                originalCadastrs.IDOwner = Owners.IDOwner;
-                originalCadastrs.IDStatus = Owners.IDStatus;
-                originalCadastrs.Date_registration = Owners.Date_registration;
-                _entities.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-        public bool deleteCadastrs(int Id)
-        {
-            Cadastre originalCadastrs = getOwners(Id);
-            try
-            {
-                //Удаляем запись из таблицы
-                _entities.Cadastre.Remove(originalCadastrs);
-                _entities.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
         }*/
+
+        public bool AddOwner (Owner owner)
+        {
+            bool result = true;
+            Connect();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO  Owner (Name, Surname, Inn, Passport, Phone, Mail) " +
+                    "VALUES (@Name, @Surname, @Inn, @Passport, @Phone, @EMail)", Connection);
+                cmd.Parameters.AddWithValue("@Name", owner.Name);
+                cmd.Parameters.AddWithValue("@Surname", owner.Surname);
+                cmd.Parameters.AddWithValue("@Inn", owner.Inn);
+                cmd.Parameters.AddWithValue("@Passport", owner.Passport);
+                cmd.Parameters.AddWithValue("@Phone", owner.Phone);
+                cmd.Parameters.AddWithValue("@Mail", owner.Mail);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception) { result = false;
+            }
+            finally { Disconnect(); }
+            return result;
+        }
+        public void EditOwner(Owner owner)
+        {
+            try
+            {
+                Connect();
+                string str = "UPDATE Owner SET Name = '" + owner.Name
+                    + "', Surname = '" + owner.Surname
+                    + "', Inn = '" + owner.Inn
+                    + "', Passport = '" + owner.Passport
+                    + "', Phone = '" + owner.Phone
+                    + "', Mail = '" + owner.Mail
+                    + "'WHERE Id = " + owner.Id;
+                SqlCommand com = new SqlCommand(str, Connection);
+                com.ExecuteNonQuery();
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
+
     }
 }

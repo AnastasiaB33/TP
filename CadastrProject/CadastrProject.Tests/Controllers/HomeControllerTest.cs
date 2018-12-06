@@ -9,7 +9,7 @@ using CadastrProject.Controllers;
 
 namespace CadastrProject.Tests.Controllers
 {
-    [TestClass]
+   /* [TestClass]
     public class HomeControllerTest
     {
         [TestMethod]
@@ -50,5 +50,5 @@ namespace CadastrProject.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
-    }
+    }*/
 }

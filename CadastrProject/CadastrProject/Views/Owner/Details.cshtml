@@ -1,0 +1,63 @@
+﻿@model CadastrProject.Models.Owner
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+    <p>Детали</p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Passport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Passport)
+        </dd>
+
+        <dt>
+        @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+    </dl>
+
+@Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) |
+@Html.ActionLink("Отменить", "Index")
+
