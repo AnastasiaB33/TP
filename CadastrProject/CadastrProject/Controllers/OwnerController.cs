@@ -93,7 +93,7 @@ namespace CadastrProject.Controllers
 
             return View("Ok");
         }
-        /* 
+        /*
          // GET: Owner/Delete/5
          public ActionResult Delete(int id)
          {

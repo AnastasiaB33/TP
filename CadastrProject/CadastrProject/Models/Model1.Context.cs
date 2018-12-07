@@ -28,7 +28,7 @@ namespace CadastrProject.Models
         public virtual DbSet<Cadastre> Cadastre { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Owner> Owner { get; set; }
+        public virtual DbSet<Removal_Request> Removal_Request { get; set; }
         public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<TypeCadastr> TypeCadastr { get; set; }
     }
 }

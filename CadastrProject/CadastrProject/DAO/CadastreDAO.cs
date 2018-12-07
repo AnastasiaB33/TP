@@ -7,7 +7,7 @@ using System.Web;
 
 namespace CadastrProject.DAO
 {
-    public class CadastreDAO
+    public class CadastreDAO:DAO
     {
         //создаем экземпляр класса сущностей
         private CadastrBDEntities _entities = new CadastrBDEntities();

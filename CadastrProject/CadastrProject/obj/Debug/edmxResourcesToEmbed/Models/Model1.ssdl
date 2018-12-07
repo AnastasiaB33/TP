@@ -27,13 +27,23 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nchar" MaxLength="30" Nullable="false" />
     <Property Name="Surname" Type="nchar" MaxLength="40" Nullable="false" />
     <Property Name="Inn" Type="nchar" MaxLength="12" Nullable="false" />
     <Property Name="Passport" Type="nchar" MaxLength="8" Nullable="false" />
     <Property Name="Phone" Type="int" Nullable="false" />
     <Property Name="Mail" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Removal_Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IDCadastre" Type="int" Nullable="false" />
+    <Property Name="IDOwner" Type="int" Nullable="false" />
+    <Property Name="IDStatus" Type="int" Nullable="false" />
+    <Property Name="Cause" Type="nchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -42,13 +52,30 @@
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
   </EntityType>
-  <EntityType Name="TypeCadastr">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="35" Nullable="false" />
-  </EntityType>
+  <Association Name="FK__Removal_R__IDOwn__503BEA1C">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Removal_Request" Type="Self.Removal_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Removal_Request">
+        <PropertyRef Name="IDOwner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Removal_R__IDSta__4F47C5E3">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Removal_Request" Type="Self.Removal_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Removal_Request">
+        <PropertyRef Name="IDStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="IDGroup">
     <End Role="Group" Type="Self.Group" Multiplicity="1" />
     <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
@@ -85,24 +112,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="IDType">
-    <End Role="TypeCadastr" Type="Self.TypeCadastr" Multiplicity="0..1" />
-    <End Role="Cadastre" Type="Self.Cadastre" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TypeCadastr">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Cadastre">
-        <PropertyRef Name="IDType" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="Хранилище CadastrBDModelContainer">
     <EntitySet Name="Cadastre" EntityType="Self.Cadastre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Removal_Request" EntityType="Self.Removal_Request" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TypeCadastr" EntityType="Self.TypeCadastr" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Removal_R__IDOwn__503BEA1C" Association="Self.FK__Removal_R__IDOwn__503BEA1C">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Removal_Request" EntitySet="Removal_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Removal_R__IDSta__4F47C5E3" Association="Self.FK__Removal_R__IDSta__4F47C5E3">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Removal_Request" EntitySet="Removal_Request" />
+    </AssociationSet>
     <AssociationSet Name="IDGroup" Association="Self.IDGroup">
       <End Role="Group" EntitySet="Group" />
       <End Role="Cadastre" EntitySet="Cadastre" />
@@ -113,10 +136,6 @@
     </AssociationSet>
     <AssociationSet Name="IDStatus" Association="Self.IDStatus">
       <End Role="Status" EntitySet="Status" />
-      <End Role="Cadastre" EntitySet="Cadastre" />
-    </AssociationSet>
-    <AssociationSet Name="IDType" Association="Self.IDType">
-      <End Role="TypeCadastr" EntitySet="TypeCadastr" />
       <End Role="Cadastre" EntitySet="Cadastre" />
     </AssociationSet>
   </EntityContainer>

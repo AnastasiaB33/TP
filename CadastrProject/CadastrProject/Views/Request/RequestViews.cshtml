@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CadastrProject.Models.Removal_Request>
+@{
+    ViewBag.Title = "Заявки на снятие с учета";
+}
+
+<h2>Заявки на снятие с учета</h2>
+<p>
+    @Html.ActionLink("Добавить запись", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCadastre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDOwner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cause)
+        </th>
+        <th> Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDCadastre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDOwner)
+            </td>
+            <th>
+                @Html.DisplayFor(Item => item.IDStatus)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cause)
+            </td>
+            <td>
+
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
+            </td>
+        </tr>
+
+    }
+
+</table>
+@Html.ActionLink("Вернуться в главное меню", "../Home/Index")
+

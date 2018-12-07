@@ -18,6 +18,7 @@ namespace CadastrProject.Models
         public Status()
         {
             this.Cadastre = new HashSet<Cadastre>();
+            this.Removal_Request = new HashSet<Removal_Request>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace CadastrProject.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cadastre> Cadastre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Removal_Request> Removal_Request { get; set; }
     }
 }

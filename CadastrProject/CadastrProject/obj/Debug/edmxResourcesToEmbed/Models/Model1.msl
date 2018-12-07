@@ -39,17 +39,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Status">
-      <EntityTypeMapping TypeName="CadastrBDModel.Status">
-        <MappingFragment StoreEntitySet="Status">
+    <EntitySetMapping Name="Removal_Request">
+      <EntityTypeMapping TypeName="CadastrBDModel.Removal_Request">
+        <MappingFragment StoreEntitySet="Removal_Request">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IDCadastre" ColumnName="IDCadastre" />
+          <ScalarProperty Name="IDOwner" ColumnName="IDOwner" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+          <ScalarProperty Name="Cause" ColumnName="Cause" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TypeCadastr">
-      <EntityTypeMapping TypeName="CadastrBDModel.TypeCadastr">
-        <MappingFragment StoreEntitySet="TypeCadastr">
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="CadastrBDModel.Status">
+        <MappingFragment StoreEntitySet="Status">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>

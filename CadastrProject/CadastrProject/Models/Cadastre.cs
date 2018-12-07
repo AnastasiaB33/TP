@@ -28,6 +28,5 @@ namespace CadastrProject.Models
         public virtual Group Group { get; set; }
         public virtual Owner Owner { get; set; }
         public virtual Status Status { get; set; }
-        public virtual TypeCadastr TypeCadastr { get; set; }
     }
 }
