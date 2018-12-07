@@ -87,6 +87,12 @@ namespace CadastrProject.Controllers
 
             return View(ownerDAO.GetAllOwners());
         }
+
+        public ActionResult Ok()
+        {
+
+            return View("Ok");
+        }
         /* 
          // GET: Owner/Delete/5
          public ActionResult Delete(int id)

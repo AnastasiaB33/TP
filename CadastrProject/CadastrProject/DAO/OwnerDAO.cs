@@ -55,7 +55,7 @@ namespace CadastrProject.DAO
             {
                 SqlCommand cmd = new SqlCommand(
                     "INSERT INTO  Owner (Name, Surname, Inn, Passport, Phone, Mail) " +
-                    "VALUES (@Name, @Surname, @Inn, @Passport, @Phone, @EMail)", Connection);
+                    "VALUES (@Name, @Surname, @Inn, @Passport, @Phone, @Mail)", Connection);
                 cmd.Parameters.AddWithValue("@Name", owner.Name);
                 cmd.Parameters.AddWithValue("@Surname", owner.Surname);
                 cmd.Parameters.AddWithValue("@Inn", owner.Inn);

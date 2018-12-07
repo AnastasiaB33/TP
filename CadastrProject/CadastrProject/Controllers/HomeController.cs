@@ -27,7 +27,12 @@ namespace CadastrProject.Controllers
             var records = id == null ? recordsDAO.GetAllCadastrs() : recordsDAO.GetAllCadastrs().Where(x => x.Group.Id == id);
             return View(records);
         }
-       
+        public ActionResult CadastreRequest(int? id)
+        {
+            ViewData["Group"] = groupDAO.GetAllGroup();
+            var records = id == null ? recordsDAO.GetAllCadastrs() : recordsDAO.GetAllCadastrs().Where(x => x.Group.Id == id);
+            return View(records);
+        }
 
         //Get:/Home/Details
         public ActionResult Details(int id)

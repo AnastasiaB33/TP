@@ -8,7 +8,7 @@ namespace CadastrProject.DAO
 {
     public class DAO
     {
-        private static string connectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=CadastrBD;Integrated Security=True;Pooling=False";
+        private static string connectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=CadastrBD;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         public SqlConnection Connection { get; set; }
         public void Connect()
         {
