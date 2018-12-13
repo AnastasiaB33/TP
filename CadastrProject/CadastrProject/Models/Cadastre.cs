@@ -15,7 +15,6 @@ namespace CadastrProject.Models
     public partial class Cadastre
     {
         public int Id { get; set; }
-        public Nullable<int> IDType { get; set; }
         public string Address { get; set; }
         public double Value { get; set; }
         public double Square { get; set; }

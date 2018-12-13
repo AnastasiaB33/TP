@@ -56,7 +56,6 @@ namespace CadastrProject.DAO
             try
             {
                 //редактирование записи в таблице
-                originalCadastrs.IDType = Cadastrs.IDType; 
                 originalCadastrs.Address = Cadastrs.Address;
                 originalCadastrs.Value = Cadastrs.Value;
                 originalCadastrs.Square = Cadastrs.Square;
