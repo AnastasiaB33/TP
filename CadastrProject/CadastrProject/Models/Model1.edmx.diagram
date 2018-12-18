@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="Model.Group" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Owner" Width="1.5" PointX="2.625" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Removal_Request" Width="1.5" PointX="1.375" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="4.125" PointY="6.25" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.IDGroup" ManuallyRouted="false" />
