@@ -1,5 +1,6 @@
 ﻿using CadastrProject.DAO;
 using CadastrProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,13 +82,17 @@ namespace CadastrProject.Controllers
             }
 
         }
-
+        /*
+        public ActionResult OwnerViews()
+        {
+            string id =  
+            Owner owner = ownerDAO.GetAcc(id);
+            return View("OwnerViews",ownerDAO.GetOwner(owner.id));
+        }*/
         public ActionResult OwnerViews(int? id)
         {
-
             return View(ownerDAO.GetAllOwners());
         }
-
         public ActionResult Ok()
         {
 

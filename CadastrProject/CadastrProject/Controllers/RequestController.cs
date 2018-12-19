@@ -26,10 +26,10 @@ namespace CadastrProject.Controllers
         }
         
         // GET: Request/Details/5
-        public ActionResult Details(int id)
+        /*public ActionResult Details(int id)
         {
             return View();
-        }
+        }*/
 
         // GET: Request/Create
         public ActionResult Create()

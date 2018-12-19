@@ -12,7 +12,7 @@
                 @if (User.IsInRole("Admin")) {
                    @Html.ActionLink("Данные владельцев", "../Owner/OwnerViews")
                     <br>
-                   @Html.ActionLink("Просмотреть заявки", "CadastreRequest")
+                   @Html.ActionLink("Просмотреть все заявки", "CadastreRequest")
                     <br>
                    @Html.ActionLink("Просмотреть заявки на снятие с учета", "../Request/RequestViews")
                    <br>
@@ -21,6 +21,7 @@
                  <br>
                  @Html.ActionLink("Мои владельцы", "")
                  <br>
+                 @Html.ActionLink("Просмотреть заявки", "CadastreRequest")
              </p>
 
        

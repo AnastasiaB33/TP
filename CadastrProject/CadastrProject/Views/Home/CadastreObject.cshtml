@@ -15,7 +15,7 @@
     }
 </ul>
 <p>
-    @Html.ActionLink("Добавить запись", "Create")
+    @Html.ActionLink("Регистрация нового объекта", "Create")
 </p>
 <p>
     @Html.ActionLink("Снять объект с учёта", "../Request/Create")
@@ -81,8 +81,7 @@
             <td>
 
                 @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) 
             </td>
         </tr>
     }

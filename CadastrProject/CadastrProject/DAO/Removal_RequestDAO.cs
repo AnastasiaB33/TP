@@ -67,7 +67,7 @@ namespace CadastrProject.DAO
                 Connect();
                 string str = "UPDATE Removal_Request SET IDCadastre = '" + request.IDCadastre
                     + "', IDOwner = '" + request.IDOwner
-                    + "', IDStatu = '" + request.IDStatus
+                    + "', IDStatus = '" + request.IDStatus
                     + "', Cause = '" + request.Cause
                     + "'WHERE Id = " + request.Id;
                 SqlCommand com = new SqlCommand(str, Connection);
