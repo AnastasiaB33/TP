@@ -28,7 +28,9 @@ namespace CadastrProject.Models
         public string Passport { get; set; }
         public int Phone { get; set; }
         public string Mail { get; set; }
+        public string IDUser { get; set; }
     
+        public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cadastre> Cadastre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

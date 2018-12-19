@@ -57,6 +57,7 @@
     <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Owner" Relationship="Self.IDUser" FromRole="AspNetUsers" ToRole="Owner" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
   <EntityType Name="Cadastre">
@@ -96,6 +97,8 @@
     <Property Name="Passport" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Phone" Type="Int32" Nullable="false" />
     <Property Name="Mail" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="IDUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.IDUser" FromRole="Owner" ToRole="AspNetUsers" />
     <NavigationProperty Name="Cadastre" Relationship="Self.IDOwner" FromRole="Owner" ToRole="Cadastre" />
     <NavigationProperty Name="Removal_Request" Relationship="Self.FK__Removal_R__IDOwn__4222D4EF" FromRole="Owner" ToRole="Removal_Request" />
   </EntityType>
@@ -116,7 +119,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Cadastre" Relationship="Self.IDStatus" FromRole="Status" ToRole="Cadastre" />
     <NavigationProperty Name="Removal_Request" Relationship="Self.FK__Removal_R__IDSta__412EB0B6" FromRole="Status" ToRole="Removal_Request" />
   </EntityType>
@@ -145,6 +148,18 @@
       </Principal>
       <Dependent Role="AspNetUserLogins">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IDUser">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Owner">
+        <PropertyRef Name="IDUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -230,6 +245,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="IDUser" Association="Self.IDUser">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Owner" EntitySet="Owner" />
     </AssociationSet>
     <AssociationSet Name="IDGroup" Association="Self.IDGroup">
       <End Role="Group" EntitySet="Group" />

@@ -17,6 +17,11 @@ namespace CadastrProject.DAO
             //Простая выборка через класс сущностей
             return (from c in _entities.Cadastre.Include("Group") select c);
         }
+        public IEnumerable<Cadastre> GetAllStatus()
+        {
+            //Простая выборка через класс сущностей
+            return (from c in _entities.Cadastre.Include("Status") select c);
+        }
 
         public Group GetGroup(int? id)
         {
@@ -28,12 +33,30 @@ namespace CadastrProject.DAO
                 return (from c in _entities.Group
                         select c).FirstOrDefault();
         }
+        public Status GetStatus(int? id)
+        {
+            if (id != null) //возращает запись по её Id
+                return (from c in _entities.Status
+                        where c.Id == id
+                        select c).FirstOrDefault();
+            else // возвращает первую запись в таблице
+                return (from c in _entities.Status
+                        select c).FirstOrDefault();
+        }
         public Cadastre getCadastrs(int id)
         {
             return (from c in _entities.Cadastre.Include("Group")
                     where c.Id == id
                     select c).FirstOrDefault();
         }
+
+        public Cadastre getStatus(int id)
+        {
+            return (from c in _entities.Cadastre.Include("Status")
+                    where c.Id == id
+                    select c).FirstOrDefault();
+        }
+
         public bool addCadastrs(int IDGroup, Cadastre Cadastrs)
         {
             try
@@ -49,20 +72,13 @@ namespace CadastrProject.DAO
             }
             return true;
         }
-        public bool updateCadastrs(int GroupId, Cadastre Cadastrs)
+        public bool UpdateStatus(Cadastre Records)
         {
-            Cadastre originalCadastrs = getCadastrs(Cadastrs.Id);
-            originalCadastrs.Group = GetGroup(GroupId);
             try
             {
-                //редактирование записи в таблице
-                originalCadastrs.Address = Cadastrs.Address;
-                originalCadastrs.Value = Cadastrs.Value;
-                originalCadastrs.Square = Cadastrs.Square;
-                originalCadastrs.Date_application = Cadastrs.Date_application;
-                originalCadastrs.IDOwner = Cadastrs.IDOwner;
-                originalCadastrs.IDStatus = Cadastrs.IDStatus;
-                originalCadastrs.Date_registration = Cadastrs.Date_registration;
+                var Entity = _entities.Cadastre.FirstOrDefault(x => x.Id == Records.Id);
+                Entity.IDStatus = Records.IDStatus;
+                Entity.Date_registration = Records.Date_registration;
                 _entities.SaveChanges();
             }
             catch
@@ -71,6 +87,31 @@ namespace CadastrProject.DAO
             }
             return true;
         }
+
+        /* public bool updateCadastrs(int GroupId, Cadastre Cadastrs)
+         {
+             Cadastre originalCadastrs = getCadastrs(Cadastrs.Id);
+             originalCadastrs.Group = GetGroup(GroupId);
+             try
+             {
+                 //редактирование записи в таблице
+                 originalCadastrs.Address = Cadastrs.Address;
+                 originalCadastrs.Value = Cadastrs.Value;
+                 originalCadastrs.Square = Cadastrs.Square;
+                 originalCadastrs.Date_application = Cadastrs.Date_application;
+                 originalCadastrs.IDOwner = Cadastrs.IDOwner;
+                 originalCadastrs.IDStatus = Cadastrs.IDStatus;
+                 originalCadastrs.Date_registration = Cadastrs.Date_registration;
+                 _entities.SaveChanges();
+             }
+             catch
+             {
+                 return false;
+             }
+             return true;
+         }*/
+
+        /*
         public bool deleteCadastrs(int Id)
         {
             Cadastre originalCadastrs = getCadastrs(Id);
@@ -85,7 +126,7 @@ namespace CadastrProject.DAO
                 return false;
             }
             return true;
-        }
+        }*/
     }
 }
 

@@ -94,6 +94,7 @@
     <Property Name="Passport" Type="nchar" MaxLength="8" Nullable="false" />
     <Property Name="Phone" Type="int" Nullable="false" />
     <Property Name="Mail" Type="nchar" MaxLength="20" />
+    <Property Name="IDUser" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="Removal_Request">
     <Key>
@@ -110,7 +111,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK__Removal_R__IDOwn__4222D4EF">
     <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
@@ -228,6 +229,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="IDUser">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Owner">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище ModelContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -275,6 +288,10 @@
     <AssociationSet Name="IDStatus" Association="Self.IDStatus">
       <End Role="Status" EntitySet="Status" />
       <End Role="Cadastre" EntitySet="Cadastre" />
+    </AssociationSet>
+    <AssociationSet Name="IDUser" Association="Self.IDUser">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Owner" EntitySet="Owner" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

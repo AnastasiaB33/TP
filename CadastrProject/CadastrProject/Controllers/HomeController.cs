@@ -13,6 +13,7 @@ namespace CadastrProject.Controllers
         GroupDAO groupDAO = new GroupDAO();
         CadastreDAO recordsDAO = new CadastreDAO();
         OwnerDAO ownerDAO = new OwnerDAO();
+        StatusDAO statusDAO = new StatusDAO();
         //GET:/Home
         public ActionResult Index(int? id)
         {
@@ -80,20 +81,26 @@ namespace CadastrProject.Controllers
         public ActionResult Edit(int id)
         {
             Cadastre Records = recordsDAO.getCadastrs(id);
-            if (!ViewDataSelectList(Records.Group.Id))
-                return RedirectToAction("Index");
+            if (Records != null)
+            {
+                SelectList status = new SelectList(statusDAO.GetAllStatus(), "id", "name", id);
+                ViewBag.Status = status;
+                return View(Records);
+            }
+            /*    if (!ViewDataSelectList(Records.Group.Id))
+                    return RedirectToAction("Index");*/
             return View(recordsDAO.getCadastrs(id));
         }
 
         //POST:/Home/Edit
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(int IDGroup, Cadastre Cadastrs)
+        public ActionResult Edit(int IDStatus, Cadastre Records)
         {
             ViewDataSelectList(-1);
             try
             {
-                if (ModelState.IsValid && recordsDAO.updateCadastrs(IDGroup, Cadastrs))
+                if (ModelState.IsValid && recordsDAO.UpdateStatus(Records))
                     return RedirectToAction("../Owner/Ok");
                 else
                     return View("../Owner/Error");
@@ -112,7 +119,7 @@ namespace CadastrProject.Controllers
         }
 
         //POST:/Home/Delete
-        [HttpPost]
+       /* [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, Cadastre Cadastrss)
         {
@@ -127,6 +134,6 @@ namespace CadastrProject.Controllers
             {
                 return View(recordsDAO.getCadastrs(id));
             }
-        }
+        }*/
     }
 }

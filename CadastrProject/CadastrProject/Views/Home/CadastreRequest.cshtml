@@ -5,8 +5,8 @@
 <h2>Заявки</h2>
 <h5>Виды кадастровых объектов</h5>
 <ul id="groups">
-    @foreach (var item in (IEnumerable<CadastrProject.Models.Group>)ViewData["Group"])
-    {
+   @foreach (var item in (IEnumerable<CadastrProject.Models.Group>)ViewData["Group"])
+   {
         <li>
             <div>
                 @Html.ActionLink(item.Type, "CadastreRequest", new { id = item.Id })

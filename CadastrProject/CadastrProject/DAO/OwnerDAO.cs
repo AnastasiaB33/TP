@@ -12,6 +12,10 @@ namespace CadastrProject.DAO
     {
         //создаем экземпляр класса сущностей
         private CadastrBDEntities _entities = new CadastrBDEntities();
+        public IEnumerable<Owner> GetAllOwner()
+        {
+            return _entities.Owner.Select(n => n);
+        }
 
         public List<Owner> GetAllOwners()
         {

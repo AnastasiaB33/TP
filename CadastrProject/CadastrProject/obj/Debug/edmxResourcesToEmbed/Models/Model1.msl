@@ -90,6 +90,7 @@
           <ScalarProperty Name="Passport" ColumnName="Passport" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

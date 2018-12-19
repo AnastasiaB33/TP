@@ -2,17 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 
 namespace CadastrProject.DAO
 {
-    public class GroupDAO:DAO
+    public class StatusDAO:DAO
     {
         private CadastrBDEntities _entities = new CadastrBDEntities();
-        public IEnumerable<Models.Group> GetAllGroup()
+        public IEnumerable<Models.Status> GetAllStatus()
         {
-            return (from c in _entities.Group select c);
+            return (from c in _entities.Status select c);
         }
     }
-} 
+}

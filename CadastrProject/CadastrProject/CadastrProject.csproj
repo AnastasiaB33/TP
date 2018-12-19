@@ -207,6 +207,7 @@
     <Compile Include="DAO\GroupDAO.cs" />
     <Compile Include="DAO\OwnerDAO.cs" />
     <Compile Include="DAO\Removal_RequestDAO.cs" />
+    <Compile Include="DAO\StatusDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

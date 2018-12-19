@@ -16,7 +16,7 @@ namespace CadastrProject.Controllers
         // GET: Owner
         public ActionResult Index()
         {
-            return View(ownerDAO.GetAllOwners());
+            return View(ownerDAO.GetAllOwner());
         }
 
         // GET: Owner/Details/5
