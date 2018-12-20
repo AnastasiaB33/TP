@@ -24,9 +24,14 @@ namespace CadastrProject.DAO
                 {
                     Removal_Request request = new Removal_Request();
                     request.Id = Convert.ToInt32(reader["Id"]);
-                    request.IDCadastre = Convert.ToInt32(reader["IDCadastre"]);
+                    request.DateDelete = Convert.ToDateTime(reader["DateDelete"]);
+                    request.IDCadastr = Convert.ToInt32(reader["IDCadastr"]);
                     request.IDOwner = Convert.ToInt32(reader["IDOwner"]);
                     request.IDStatus = Convert.ToInt32(reader["IDStatus"]);
+                    request.Address = Convert.ToString(reader["Address"]);
+                    request.Value = Convert.ToInt32(reader["Value"]);
+                    request.Square = Convert.ToInt32(reader["Square"]);
+                    request.Date_registration = Convert.ToDateTime(reader["Date_registration"]);
                     request.Cause = Convert.ToString(reader["Cause"]);
                     requestList.Add(request);
                 }
@@ -44,11 +49,16 @@ namespace CadastrProject.DAO
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO  Removal_Request (IDCadastre, IDOwner, IDStatus, Cause) " +
-                    "VALUES (@IDCadastre, @IDOwner, @IDStatus, @Cause)", Connection);
-                cmd.Parameters.AddWithValue("@IDCadastre", request.IDCadastre);
+                    "INSERT INTO  Removal_Request (DateDelete, IDCadastr, IDOwner, IDStatus, Address, Value, Square, Date_registration, Cause) " +
+                    "VALUES (@DateDelete, @IDCadastr, @IDOwner, @IDStatus,@Address, @Value, @Square, @Date_registration, @Cause)", Connection);
+                cmd.Parameters.AddWithValue("@DateDelete", request.DateDelete);
+                cmd.Parameters.AddWithValue("@IDCadastr", request.IDCadastr);
                 cmd.Parameters.AddWithValue("@IDOwner", request.IDOwner);
                 cmd.Parameters.AddWithValue("@IDStatus", request.IDStatus);
+                cmd.Parameters.AddWithValue("@Address", request.Address);
+                cmd.Parameters.AddWithValue("@Value", request.Value);
+                cmd.Parameters.AddWithValue("@Square", request.Square);
+                cmd.Parameters.AddWithValue("@Date_registration", request.Date_registration);
                 cmd.Parameters.AddWithValue("@Cause", request.Cause);
                 cmd.ExecuteNonQuery();
             }
@@ -65,9 +75,14 @@ namespace CadastrProject.DAO
             try
             {
                 Connect();
-                string str = "UPDATE Removal_Request SET IDCadastre = '" + request.IDCadastre
+                string str = "UPDATE Removal_Request SET IDCadastr = '" + request.IDCadastr
                     + "', IDOwner = '" + request.IDOwner
+                    + "', DateDelete = '" + request.DateDelete
                     + "', IDStatus = '" + request.IDStatus
+                    + "', Address = '" + request.Address
+                    + "', Value = '" + request.Value
+                    + "', Square = '" + request.Square
+                    + "', Date_registration = '" + request.Date_registration
                     + "', Cause = '" + request.Cause
                     + "'WHERE Id = " + request.Id;
                 SqlCommand com = new SqlCommand(str, Connection);

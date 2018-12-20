@@ -98,9 +98,14 @@
       <EntityTypeMapping TypeName="Model.Removal_Request">
         <MappingFragment StoreEntitySet="Removal_Request">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IDCadastre" ColumnName="IDCadastre" />
+          <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
+          <ScalarProperty Name="IDCadastr" ColumnName="IDCadastr" />
           <ScalarProperty Name="IDOwner" ColumnName="IDOwner" />
           <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Square" ColumnName="Square" />
+          <ScalarProperty Name="Date_registration" ColumnName="Date_registration" />
           <ScalarProperty Name="Cause" ColumnName="Cause" />
         </MappingFragment>
       </EntityTypeMapping>

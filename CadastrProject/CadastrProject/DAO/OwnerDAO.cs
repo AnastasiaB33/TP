@@ -18,16 +18,35 @@ namespace CadastrProject.DAO
         }
         public Owner GetAcc(string userid)
         {
-            return _entities.Owner.Where(n => n.IDUser == userid).First();
+            try
+            {
+                //выводит только одну запись, а надо все
+                return _entities.Owner.Where(n => n.IDUser == userid).First();
+            }
+            catch (Exception) {
+                return null;
+                    }
         }
-        public IEnumerable<Owner> GetOwner(int userid)
-        {
-             return _entities.Owner.Where(n => n.Id == userid);
-        }
-        /*public Owner GetOwner(int id)
+        /*
+          с Валей пытались
+          public IEnumerable<Owner> GetOwner(string userid)
+          {
+              int id = Convert.ToInt32(userid);
+               return _entities.Owner.Where(n => n.Id == id);
+          }
+          */
+        /*
+        public Owner GetOwner(int id)
         {
             return _entities.Owner.Where(n => n.Id == id).First();
-        }*/
+        }
+        */
+        public IEnumerable<Owner> GetOwner(int userid)
+        {
+            {
+            return _entities.Owner.Where(n => n.Id == userid);
+            }
+        }
 
         public List<Owner> GetAllOwners()
         {
@@ -47,6 +66,7 @@ namespace CadastrProject.DAO
                     owner.Passport = Convert.ToString(reader["Passport"]);
                     owner.Phone = Convert.ToInt32(reader["Phone"]);
                     owner.Mail = Convert.ToString(reader["Mail"]);
+                    owner.IDUser= Convert.ToString(reader["IDUser"]);
                     ownerList.Add(owner);
                 }
                 reader.Close();
@@ -55,13 +75,42 @@ namespace CadastrProject.DAO
             finally { Disconnect(); }
             return ownerList;
         }
-      
-      /*  public Cadastre getOwners(int id)
+        /*
+        public List<Owner> MyOwner(string id)
         {
-            return (from c in _entities.Cadastre.Include("Group")
-                    where c.Id == id
-                    select c).FirstOrDefault();
+        //похожий лист
+            Connect();
+            List<Owner> ownerList = new List<Owner>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Owner WHERE IDUser="+id, Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Owner owner = new Owner();
+                    owner.Id = Convert.ToInt32(reader["Id"]);
+                    owner.Name = Convert.ToString(reader["Name"]);
+                    owner.Surname = Convert.ToString(reader["Surname"]);
+                    owner.Inn = Convert.ToString(reader["Inn"]);
+                    owner.Passport = Convert.ToString(reader["Passport"]);
+                    owner.Phone = Convert.ToInt32(reader["Phone"]);
+                    owner.Mail = Convert.ToString(reader["Mail"]);
+                    owner.IDUser = Convert.ToString(reader["IDUser"]);
+                    ownerList.Add(owner);
+                }
+                reader.Close();
+            }
+            catch (Exception) { }
+            finally { Disconnect(); }
+            return ownerList;
         }*/
+
+        /*  public Cadastre getOwners(int id)
+          {
+              return (from c in _entities.Cadastre.Include("Group")
+                      where c.Id == id
+                      select c).FirstOrDefault();
+          }*/
 
         public bool AddOwner (Owner owner)
         {

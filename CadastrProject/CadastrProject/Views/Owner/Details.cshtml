@@ -9,7 +9,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Имя
         </dt>
 
         <dd>
@@ -17,7 +17,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Surname)
+            Фамилия
         </dt>
 
         <dd>
@@ -25,7 +25,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Inn)
+            ИНН
         </dt>
 
         <dd>
@@ -33,7 +33,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Passport)
+            Паспорт
         </dt>
 
         <dd>
@@ -41,7 +41,7 @@
         </dd>
 
         <dt>
-        @Html.DisplayNameFor(model => model.Phone)
+            Телефон
         </dt>
 
         <dd>
@@ -49,13 +49,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Mail)
+            Почта
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Mail)
         </dd>
 
+        <dt>
+            Пользователь
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IDUser)
+        </dd>
     </dl>
 
 @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) 

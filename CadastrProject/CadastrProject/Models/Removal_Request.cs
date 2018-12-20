@@ -15,9 +15,14 @@ namespace CadastrProject.Models
     public partial class Removal_Request
     {
         public int Id { get; set; }
-        public int IDCadastre { get; set; }
+        public System.DateTime DateDelete { get; set; }
+        public int IDCadastr { get; set; }
         public int IDOwner { get; set; }
         public int IDStatus { get; set; }
+        public string Address { get; set; }
+        public double Value { get; set; }
+        public double Square { get; set; }
+        public System.DateTime Date_registration { get; set; }
         public string Cause { get; set; }
     
         public virtual Owner Owner { get; set; }

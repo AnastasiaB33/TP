@@ -26,10 +26,14 @@ namespace CadastrProject.Controllers
         }
         
         // GET: Request/Details/5
-        /*public ActionResult Details(int id)
+        public ActionResult Details(int id)
         {
-            return View();
-        }*/
+            request = requestDAO.GetAllRequest();
+            int trueid = 0;
+            for (int i = 0; i < request.Count; i++) if (request[i].Id == id) trueid = i;
+            return View(request[trueid]);
+
+        }
 
         // GET: Request/Create
         public ActionResult Create()
