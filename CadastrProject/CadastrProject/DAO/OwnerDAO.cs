@@ -16,15 +16,15 @@ namespace CadastrProject.DAO
         {
             return _entities.Owner.Select(n => n);
         }
-       /* public Owner GetAcc(string id)
+        public Owner GetAcc(string userid)
         {
-            return _entities.Owner.Where(n => n.IDUser == id).First();
-        }*/
-       /* public IEnumerable<Owner> GetOwner(int id)
+            return _entities.Owner.Where(n => n.IDUser == userid).First();
+        }
+        public IEnumerable<Owner> GetOwner(int userid)
         {
-             return _entities.Owner.Where(n => n.Id == id);
-        }*/
-       /* public Owner GetOwner(int id)
+             return _entities.Owner.Where(n => n.Id == userid);
+        }
+        /*public Owner GetOwner(int id)
         {
             return _entities.Owner.Where(n => n.Id == id).First();
         }*/

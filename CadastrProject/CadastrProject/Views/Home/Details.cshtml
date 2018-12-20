@@ -10,36 +10,58 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.IDGroup)
+            Вид объекта
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Group.Type)
+        </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            Адрес
         </dt>
-
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            Кадастровая стоимость
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Value)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Square)
+            Площадь
         </dt>
-
+        <dd>
+            @Html.DisplayFor(model => model.Square)
+        </dd>
+        <dt>
+            Дата подачи заявки
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Date_application)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.IDOwner)
+            Владелец
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.IDStatus)
+            @Html.DisplayFor(model => model.IDOwner)
+            @Html.DisplayFor(model => model.Owner.Surname)
+            @Html.DisplayFor(model => model.Owner.Name)
+        </dd>
+        <dt>
+            Статус
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt>
+           Дата регистрации
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date_registration)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date_registration)
-        </dt>
     </dl>
+    
 </div>
 <p>
     @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |

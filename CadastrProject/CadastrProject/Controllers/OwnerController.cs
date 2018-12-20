@@ -82,17 +82,17 @@ namespace CadastrProject.Controllers
             }
 
         }
-        /*
+        
         public ActionResult OwnerViews()
         {
-            string id =  
-            Owner owner = ownerDAO.GetAcc(id);
-            return View("OwnerViews",ownerDAO.GetOwner(owner.id));
-        }*/
-        public ActionResult OwnerViews(int? id)
+            string userid = User.Identity.GetUserId(); 
+            Owner owner = ownerDAO.GetAcc(userid);
+            return View("OwnerViews",ownerDAO.GetOwner(owner.Id));
+        }
+       /* public ActionResult OwnerViews(int? id)
         {
             return View(ownerDAO.GetAllOwners());
-        }
+        }*/
         public ActionResult Ok()
         {
 
