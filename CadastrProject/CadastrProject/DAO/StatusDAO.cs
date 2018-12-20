@@ -8,7 +8,7 @@ namespace CadastrProject.DAO
 {
     public class StatusDAO:DAO
     {
-        private CadastrBDEntities _entities = new CadastrBDEntities();
+        private CadastrBDEntities1 _entities = new CadastrBDEntities1();
         public IEnumerable<Models.Status> GetAllStatus()
         {
             return (from c in _entities.Status select c);

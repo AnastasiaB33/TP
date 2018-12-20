@@ -9,7 +9,7 @@ namespace CadastrProject.DAO
 {
     public class GroupDAO:DAO
     {
-        private CadastrBDEntities _entities = new CadastrBDEntities();
+        private CadastrBDEntities1 _entities = new CadastrBDEntities1();
         public IEnumerable<Models.Group> GetAllGroup()
         {
             return (from c in _entities.Group select c);

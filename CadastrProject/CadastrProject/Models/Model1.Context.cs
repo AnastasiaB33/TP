@@ -13,10 +13,10 @@ namespace CadastrProject.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CadastrBDEntities : DbContext
+    public partial class CadastrBDEntities1 : DbContext
     {
-        public CadastrBDEntities()
-            : base("name=CadastrBDEntities")
+        public CadastrBDEntities1()
+            : base("name=CadastrBDEntities1")
         {
         }
     
@@ -32,7 +32,6 @@ namespace CadastrProject.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Cadastre> Cadastre { get; set; }
         public virtual DbSet<Group> Group { get; set; }
-        public virtual DbSet<Owner> Owner { get; set; }
         public virtual DbSet<Removal_Request> Removal_Request { get; set; }
         public virtual DbSet<Status> Status { get; set; }
     }

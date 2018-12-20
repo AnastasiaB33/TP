@@ -16,6 +16,16 @@ namespace CadastrProject.Models
             // Здесь добавьте утверждения пользователя
             return userIdentity;
         }
+        //
+        //
+        //
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Passport { get; set; }
+        public string Inn { get; set; }
+        //
+        //
+        //
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

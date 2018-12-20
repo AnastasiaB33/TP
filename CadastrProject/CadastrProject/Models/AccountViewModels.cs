@@ -79,6 +79,16 @@ namespace CadastrProject.Models
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
+//
+//
+//
+        public string  Name{ get; set; }
+        public string Surname { get; set; }
+        public string Passport { get; set; }
+        public string Inn { get; set; }
+//
+//
+//
     }
 
     public class ResetPasswordViewModel

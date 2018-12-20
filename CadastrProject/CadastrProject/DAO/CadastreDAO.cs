@@ -10,7 +10,7 @@ namespace CadastrProject.DAO
     public class CadastreDAO:DAO
     {
         //создаем экземпляр класса сущностей
-        private CadastrBDEntities _entities = new CadastrBDEntities();
+        private CadastrBDEntities1 _entities = new CadastrBDEntities1();
 
         public IEnumerable<Cadastre> GetAllCadastrs()
         {

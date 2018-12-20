@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="CadastrBDEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="CadastrBDEntities1">
     <EntitySetMapping Name="C__MigrationHistory">
       <EntityTypeMapping TypeName="Model.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -53,6 +53,10 @@
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="Inn" ColumnName="Inn" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -64,7 +68,7 @@
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Square" ColumnName="Square" />
           <ScalarProperty Name="Date_application" ColumnName="Date_application" />
-          <ScalarProperty Name="IDOwner" ColumnName="IDOwner" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
           <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
           <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
           <ScalarProperty Name="Date_registration" ColumnName="Date_registration" />
@@ -80,32 +84,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Owner">
-      <EntityTypeMapping TypeName="Model.Owner">
-        <MappingFragment StoreEntitySet="Owner">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Inn" ColumnName="Inn" />
-          <ScalarProperty Name="Passport" ColumnName="Passport" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Removal_Request">
       <EntityTypeMapping TypeName="Model.Removal_Request">
         <MappingFragment StoreEntitySet="Removal_Request">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
           <ScalarProperty Name="IDCadastr" ColumnName="IDCadastr" />
-          <ScalarProperty Name="IDOwner" ColumnName="IDOwner" />
-          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+          <ScalarProperty Name="Date_application" ColumnName="Date_application" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Square" ColumnName="Square" />
           <ScalarProperty Name="Date_registration" ColumnName="Date_registration" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
+          <ScalarProperty Name="Date_request" ColumnName="Date_request" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
           <ScalarProperty Name="Cause" ColumnName="Cause" />
         </MappingFragment>
       </EntityTypeMapping>

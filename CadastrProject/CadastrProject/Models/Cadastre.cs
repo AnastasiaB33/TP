@@ -19,13 +19,13 @@ namespace CadastrProject.Models
         public double Value { get; set; }
         public double Square { get; set; }
         public System.DateTime Date_application { get; set; }
-        public int IDOwner { get; set; }
+        public string IDUser { get; set; }
         public int IDGroup { get; set; }
         public int IDStatus { get; set; }
         public Nullable<System.DateTime> Date_registration { get; set; }
     
+        public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual Group Group { get; set; }
-        public virtual Owner Owner { get; set; }
         public virtual Status Status { get; set; }
     }
 }

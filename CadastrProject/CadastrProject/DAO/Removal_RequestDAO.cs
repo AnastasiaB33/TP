@@ -10,7 +10,7 @@ namespace CadastrProject.DAO
     public class Removal_RequestDAO :DAO
     {
         //создаем экземпляр класса сущностей
-        private CadastrBDEntities _entities = new CadastrBDEntities();
+        private CadastrBDEntities1 _entities = new CadastrBDEntities1();
 
         public List<Removal_Request> GetAllRequest()
         {
@@ -26,7 +26,6 @@ namespace CadastrProject.DAO
                     request.Id = Convert.ToInt32(reader["Id"]);
                     request.DateDelete = Convert.ToDateTime(reader["DateDelete"]);
                     request.IDCadastr = Convert.ToInt32(reader["IDCadastr"]);
-                    request.IDOwner = Convert.ToInt32(reader["IDOwner"]);
                     request.IDStatus = Convert.ToInt32(reader["IDStatus"]);
                     request.Address = Convert.ToString(reader["Address"]);
                     request.Value = Convert.ToInt32(reader["Value"]);
@@ -53,7 +52,6 @@ namespace CadastrProject.DAO
                     "VALUES (@DateDelete, @IDCadastr, @IDOwner, @IDStatus,@Address, @Value, @Square, @Date_registration, @Cause)", Connection);
                 cmd.Parameters.AddWithValue("@DateDelete", request.DateDelete);
                 cmd.Parameters.AddWithValue("@IDCadastr", request.IDCadastr);
-                cmd.Parameters.AddWithValue("@IDOwner", request.IDOwner);
                 cmd.Parameters.AddWithValue("@IDStatus", request.IDStatus);
                 cmd.Parameters.AddWithValue("@Address", request.Address);
                 cmd.Parameters.AddWithValue("@Value", request.Value);
@@ -76,7 +74,7 @@ namespace CadastrProject.DAO
             {
                 Connect();
                 string str = "UPDATE Removal_Request SET IDCadastr = '" + request.IDCadastr
-                    + "', IDOwner = '" + request.IDOwner
+
                     + "', DateDelete = '" + request.DateDelete
                     + "', IDStatus = '" + request.IDStatus
                     + "', Address = '" + request.Address

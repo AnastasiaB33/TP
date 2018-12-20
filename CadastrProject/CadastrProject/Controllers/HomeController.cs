@@ -12,7 +12,7 @@ namespace CadastrProject.Controllers
     {
         GroupDAO groupDAO = new GroupDAO();
         CadastreDAO recordsDAO = new CadastreDAO();
-        OwnerDAO ownerDAO = new OwnerDAO();
+       // OwnerDAO ownerDAO = new OwnerDAO();
         StatusDAO statusDAO = new StatusDAO();
         //GET:/Home
         public ActionResult Index(int? id)
@@ -66,9 +66,9 @@ namespace CadastrProject.Controllers
             try
             {
                 if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, Cadastrs))
-                    return RedirectToAction("../Owner/Ok");
+                    return RedirectToAction("../Home/OK");
                 else
-                    return View("../Owner/Error");
+                    return View("../Home/Error");
             }
             catch
             {
@@ -77,7 +77,7 @@ namespace CadastrProject.Controllers
         }
 
         //GET:/Home/Edit
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Cadastre Records = recordsDAO.getCadastrs(id);
@@ -94,16 +94,16 @@ namespace CadastrProject.Controllers
 
         //POST:/Home/Edit
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public ActionResult Edit(int IDStatus, Cadastre Records)
         {
             ViewDataSelectList(-1);
             try
             {
                 if (ModelState.IsValid && recordsDAO.UpdateStatus(Records))
-                    return RedirectToAction("../Owner/Ok");
+                    return RedirectToAction("OK");
                 else
-                    return View("../Owner/Error");
+                    return View("../Home/Error");
             }
             catch
             {
@@ -112,7 +112,7 @@ namespace CadastrProject.Controllers
         }
 
         //GET:/Home/Delete
-        [Authorize(Roles = "Admin")]
+     //   [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View(recordsDAO.getCadastrs(id));
