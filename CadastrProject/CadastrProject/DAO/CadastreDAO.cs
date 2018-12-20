@@ -111,7 +111,7 @@ namespace CadastrProject.DAO
              return true;
          }*/
 
-        /*
+        
         public bool deleteCadastrs(int Id)
         {
             Cadastre originalCadastrs = getCadastrs(Id);
@@ -126,7 +126,7 @@ namespace CadastrProject.DAO
                 return false;
             }
             return true;
-        }*/
+        }
     }
 }
 

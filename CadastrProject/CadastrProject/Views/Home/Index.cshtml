@@ -10,17 +10,13 @@
              <br>
              <p>
                 @if (User.IsInRole("Admin")) {
-                    //надо сделать чтобы видел данные всех владельцев и желательно их пользователей
-                   @Html.ActionLink("Данные владельцев", "../Owner/OwnerViews")
-                    <br>
+
                    @Html.ActionLink("Просмотреть все заявки", "CadastreRequest")
                     <br>
                    @Html.ActionLink("Просмотреть заявки на снятие с учета", "../Request/RequestViews")
                    <br>
                 }
                  @Html.ActionLink("Мои заявки ", "")
-                 <br>
-                 @Html.ActionLink("Мои владельцы", "../Owner/OwnerViews")
                  <br>
                  @Html.ActionLink("Просмотреть заявки", "CadastreRequest")
              </p>

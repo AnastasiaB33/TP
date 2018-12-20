@@ -342,7 +342,7 @@
     <Content Include="Views\Home\CadastreRequest.cshtml" />
     <Content Include="Views\Request\Create.cshtml" />
     <Content Include="Views\Request\RequestViews.cshtml" />
-    <Content Include="Views\Home\OK.cshtml" />
+    <Content Include="Views\Home\Ok.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

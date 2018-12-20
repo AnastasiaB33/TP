@@ -10,13 +10,34 @@
 <table class="table">
     <tr>
         <th>
-            ID заявки
+            ID заявки                         
+        </th>
+        <th>
+            Дата подачи заявки поставки на учет
         </th>
         <th>
             ID кадастра
         </th>
         <th>
+            Адрес
+        </th>
+        <th>
+            Кадастровая стоимость
+        </th>
+        <th>
+            Площадь
+        </th>
+        <th>
+            Дата регистрации
+        </th>
+        <th>
             Владелец
+        </th>
+        <th>
+            Дата подачи заявки на снятие с учета
+        </th>
+        <th>
+            Дата снятия с учета
         </th>
         <th>
             Статус
@@ -34,14 +55,35 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Date_application)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.IDCadastr)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IDOwner)
+                @Html.DisplayFor(modelItem => item.Address)
             </td>
-            <th>
-                @Html.DisplayFor(Item => item.IDStatus)
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Square)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_registration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_request)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cause)
             </td>

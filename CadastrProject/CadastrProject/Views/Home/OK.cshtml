@@ -1,14 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "OK";
+    Layout = null;
 }
 
-<h2>OK</h2>
-Изменения приняты
+@{
+    ViewBag.Title = "Ok";
+}
+
+<h2>Ok</h2>
 
 <div>
-    @Html.ActionLink("Заявки", "CadastreRequest")
-</div>
-<div>
-    @Html.ActionLink("На главную", "Index")
+    <p>Изменения приняты</p>
+    @Html.ActionLink("На главную", "../Home/Index")
 </div>

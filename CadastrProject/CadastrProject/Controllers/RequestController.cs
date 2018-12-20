@@ -13,7 +13,7 @@ namespace CadastrProject.Controllers
         Removal_RequestDAO requestDAO = new Removal_RequestDAO();
         List<Removal_Request> request;
 
-        public ActionResult RequestViews(int? id)
+        public ActionResult RequestViews()
         {
 
             return View(requestDAO.GetAllRequest());
@@ -49,7 +49,7 @@ namespace CadastrProject.Controllers
             {
                 if (requestDAO.AddRequest(request))
                 {
-                    return RedirectToAction("Ok");
+                    return RedirectToAction("../Home/Ok");
                 }
                 else
                 {

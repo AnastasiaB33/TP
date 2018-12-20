@@ -24,13 +24,16 @@ namespace CadastrProject.DAO
                 {
                     Removal_Request request = new Removal_Request();
                     request.Id = Convert.ToInt32(reader["Id"]);
-                    request.DateDelete = Convert.ToDateTime(reader["DateDelete"]);
                     request.IDCadastr = Convert.ToInt32(reader["IDCadastr"]);
-                    request.IDStatus = Convert.ToInt32(reader["IDStatus"]);
+                    request.Date_application = Convert.ToDateTime(reader["Date_application"]);
                     request.Address = Convert.ToString(reader["Address"]);
                     request.Value = Convert.ToInt32(reader["Value"]);
                     request.Square = Convert.ToInt32(reader["Square"]);
                     request.Date_registration = Convert.ToDateTime(reader["Date_registration"]);
+                    request.IDUser = Convert.ToString(reader["IDUser"]);
+                    request.DateDelete = Convert.ToDateTime(reader["DateDelete"]);
+                    request.Date_request = Convert.ToDateTime(reader["Date_request"]);
+                    request.IDStatus = Convert.ToInt32(reader["IDStatus"]);
                     request.Cause = Convert.ToString(reader["Cause"]);
                     requestList.Add(request);
                 }

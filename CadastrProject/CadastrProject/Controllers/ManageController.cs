@@ -64,6 +64,9 @@ namespace CadastrProject.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            //
+            //var client = 
+            //
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

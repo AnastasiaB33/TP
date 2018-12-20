@@ -66,7 +66,7 @@ namespace CadastrProject.Controllers
             try
             {
                 if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, Cadastrs))
-                    return RedirectToAction("../Home/OK");
+                    return RedirectToAction("Ok");
                 else
                     return View("../Home/Error");
             }
@@ -91,7 +91,11 @@ namespace CadastrProject.Controllers
                     return RedirectToAction("Index");*/
             return View(recordsDAO.getCadastrs(id));
         }
+        public ActionResult Ok()
+        {
 
+            return View("Ok");
+        }
         //POST:/Home/Edit
         [HttpPost]
        // [Authorize(Roles = "Admin")]
@@ -101,7 +105,7 @@ namespace CadastrProject.Controllers
             try
             {
                 if (ModelState.IsValid && recordsDAO.UpdateStatus(Records))
-                    return RedirectToAction("OK");
+                    return RedirectToAction("Ok");
                 else
                     return View("../Home/Error");
             }
@@ -119,7 +123,7 @@ namespace CadastrProject.Controllers
         }
 
         //POST:/Home/Delete
-       /* [HttpPost]
+        [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, Cadastre Cadastrss)
         {
@@ -134,6 +138,6 @@ namespace CadastrProject.Controllers
             {
                 return View(recordsDAO.getCadastrs(id));
             }
-        }*/
+        }
     }
 }

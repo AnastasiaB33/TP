@@ -12,35 +12,61 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.IDGroup)
+           №объекта кадастра 
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            Тип кадастра
         </dt>
-
+        <dd>
+            @Html.DisplayFor(model => model.Group.Type)
+        </dd>
+        <dt>
+             Адрес
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            Кадастровая стоимость
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Value)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Square)
+            Площадь
         </dt>
-
+        <dd>
+            @Html.DisplayFor(model => model.Square)
+        </dd>
+        <dt>
+            Дата подачи заяки
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Date_application)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.IDOwner)
+            Владелец
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.IDStatus)
+            @Html.DisplayFor(model => model.AspNetUsers.Surname)
+            @Html.DisplayFor(model => model.AspNetUsers.Name)
+            @Html.DisplayFor(model => model.AspNetUsers.Id)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Date_registration)
+            Статус
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt>
+           Дата регистрации
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date_registration)
+        </dd>
     </dl>
 
     @using (Html.BeginForm())
