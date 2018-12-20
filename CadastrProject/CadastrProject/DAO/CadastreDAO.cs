@@ -57,11 +57,12 @@ namespace CadastrProject.DAO
                     select c).FirstOrDefault();
         }
 
-        public bool addCadastrs(int IDGroup, Cadastre Cadastrs)
+        public bool addCadastrs(int IDGroup,/*int IDStatus,*/ Cadastre Cadastrs)
         {
             try
             {
                 Cadastrs.Group = GetGroup(IDGroup);
+                //Cadastrs.Status = GetStatus(IDStatus);
                 //Добавление записи в таблицу Supply
                 _entities.Cadastre.Add(Cadastrs);
                 _entities.SaveChanges();

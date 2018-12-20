@@ -46,7 +46,12 @@ namespace CadastrProject.Controllers
             ViewData["IDGroup"] = new SelectList(groups, "Id", "Type", IDGroup);
             return groups.Count() > 0;
         }
-
+        /*protected bool ViewData_SelectList(int IDStatus)
+        {
+            var groups = groupDAO.GetAllGroup();
+            ViewData["IDStatus"] = new SelectList(groups, "Id", "Name", IDStatus);
+            return groups.Count() > 0;
+        }*/
         //GET:/Home/Create
         [Authorize]
         public ActionResult Create()
@@ -59,13 +64,14 @@ namespace CadastrProject.Controllers
         //POST:/Home/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(int IDGroup, [Bind(Exclude = "Id")] Cadastre Cadastrs)
+        public ActionResult Create(int IDGroup,/*int IDStatus,*/[Bind(Exclude = "Id")] Cadastre Cadastrs)
         {
             ViewDataSelectList(IDGroup);
+          //  ViewData_SelectList(IDStatus);
 
             try
             {
-                if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, Cadastrs))
+                if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, /*IDStatus,*/ Cadastrs))
                     return RedirectToAction("Ok");
                 else
                     return View("../Home/Error");
