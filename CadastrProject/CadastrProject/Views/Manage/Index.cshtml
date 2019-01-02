@@ -23,21 +23,23 @@
             }
             ]
         </dd>
-
+           @foreach (var item in Model)
+           {
         <dt>Фамилия:</dt>
         <dd>
-            @Model.Client.Surname
+            @Model.AspNetUsers.Surname
         </dd>
 
         <dt>Имя:</dt>
         <dd>
-            @Model.Client.Name
+            @Model.AspNetUsers.Name
         </dd>
 
         <dt>Паспорт:</dt>
         <dd>
-            @Model.Client.Passport
+            @Model.AspNetUsers.Passport
         </dd>
+           }
     </dl>
     Здесь он должен выводить данные о пользователе (его имя, фамилию, паспорт, инн)
     <br />

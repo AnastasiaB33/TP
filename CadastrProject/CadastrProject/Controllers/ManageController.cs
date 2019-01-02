@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CadastrProject.Models;
+using CadastrProject.DAO;
 
 namespace CadastrProject.Controllers
 {
@@ -65,7 +66,7 @@ namespace CadastrProject.Controllers
 
             var userId = User.Identity.GetUserId();
             //
-            //var client = 
+            //var client = AspNetUsersDAO.GetAcc(userId);
             //
             var model = new IndexViewModel
             {
@@ -74,6 +75,11 @@ namespace CadastrProject.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                /*,
+                AspNetUsers = client,
+                Cadastre = CadastreDAO.GetCadastreForClient(client.Id),
+                RemRequest = Removal_RequestDAO.GetRemRequestForClient(client.Id)
+                */
             };
             return View(model);
         }

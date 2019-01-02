@@ -12,6 +12,11 @@ namespace CadastrProject.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        //
+        public AspNetUsers AspNetUsers { get; set; }
+        public IEnumerable<AspNetUsers> Cadastre { get; set; }
+        public object RemRequest { get; set; }
+        //
     }
 
     public class ManageLoginsViewModel

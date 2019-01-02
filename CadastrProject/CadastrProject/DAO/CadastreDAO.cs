@@ -9,6 +9,7 @@ namespace CadastrProject.DAO
 {
     public class CadastreDAO:DAO
     {
+        private static readonly ApplicationDbContext _appContext = new ApplicationDbContext();
         //создаем экземпляр класса сущностей
         private CadastrBDEntities1 _entities = new CadastrBDEntities1();
 
@@ -87,7 +88,16 @@ namespace CadastrProject.DAO
                 return false;
             }
             return true;
+        }      
+        
+
+        /*21.12.2018
+            public static IEnumerable<AspNetUsers> GetCadastreForClient(string id)
+        {
+            return _appContext.AspNetUsers.Where(s => s.Id == id);
         }
+
+*/
 
         /* public bool updateCadastrs(int GroupId, Cadastre Cadastrs)
          {
@@ -112,7 +122,7 @@ namespace CadastrProject.DAO
              return true;
          }*/
 
-        
+
         public bool deleteCadastrs(int Id)
         {
             Cadastre originalCadastrs = getCadastrs(Id);

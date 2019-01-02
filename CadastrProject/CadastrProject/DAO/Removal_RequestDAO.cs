@@ -11,7 +11,14 @@ namespace CadastrProject.DAO
     {
         //создаем экземпляр класса сущностей
         private CadastrBDEntities1 _entities = new CadastrBDEntities1();
-
+        
+        /*21.12.2018
+        private static readonly ApplicationDbContext _appContext = new ApplicationDbContext();
+        public static IEnumerable<AspNetUsers> GetRemRequestForClient(string id)
+        {
+            return _appContext.AspNetUsers.Where(s => s.Id == id);
+        }
+        */
         public List<Removal_Request> GetAllRequest()
         {
             Connect();

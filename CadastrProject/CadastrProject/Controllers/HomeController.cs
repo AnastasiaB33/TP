@@ -67,8 +67,9 @@ namespace CadastrProject.Controllers
         public ActionResult Create(int IDGroup,/*int IDStatus,*/[Bind(Exclude = "Id")] Cadastre Cadastrs)
         {
             ViewDataSelectList(IDGroup);
-          //  ViewData_SelectList(IDStatus);
-
+            //  ViewData_SelectList(IDStatus);
+            SelectList status = new SelectList(statusDAO.GetAllStatus(), "id", "name");
+            ViewBag.Status = status;
             try
             {
                 if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, /*IDStatus,*/ Cadastrs))
