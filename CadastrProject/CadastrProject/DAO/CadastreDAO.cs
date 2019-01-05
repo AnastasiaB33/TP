@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages.Html;
 
 namespace CadastrProject.DAO
 {
@@ -24,6 +25,21 @@ namespace CadastrProject.DAO
             return (from c in _entities.Cadastre.Include("Status") select c);
         }
 
+        public List<Cadastre> GetMyObject (string id)
+        {
+            List<Cadastre> myobject = new List<Cadastre>();
+            try
+            {
+              //  using (var ctx = new CadastrBDEntities1())
+                {
+                    string query = "SELECT * FROM Cadastre WHERE IDUser=@P0";
+                    myobject.AddRange(_entities.Database.SqlQuery<Cadastre>(query, id).ToList());
+                }
+            }
+            catch (Exception ex)
+            { }
+            return myobject;
+        }
         public Group GetGroup(int? id)
         {
             if (id != null) //возращает запись по её Id
@@ -57,23 +73,47 @@ namespace CadastrProject.DAO
                     where c.Id == id
                     select c).FirstOrDefault();
         }
-
-        public bool addCadastrs(int IDGroup,/*int IDStatus,*/ Cadastre Cadastrs)
+        
+        public bool addCadastrs(int IDGroup, Cadastre Cadastrs)
         {
             try
             {
                 Cadastrs.Group = GetGroup(IDGroup);
-                //Cadastrs.Status = GetStatus(IDStatus);
-                //Добавление записи в таблицу Supply
                 _entities.Cadastre.Add(Cadastrs);
                 _entities.SaveChanges();
+                return true;
             }
             catch
             {
                 return false;
             }
-            return true;
+           
         }
+        /* не работало
+        public void addCadastrs(Cadastre model)
+        {
+            try
+            {
+                using (var ctx = new CadastrBDEntities1())
+                {
+                    string query = "INSERT INTO Cadastre (Address, Value, Square, Date_application, IDUser, IDGroup, IDStatus) VALUES (@P0, @P1, @P2, @P3, @P4, @P5, @P6)";
+                    List<object> parametrList = new List<object>
+                  {
+                    model.Address,
+                    model.Value,
+                    model.Square,
+                    model.Date_application,
+                    model.IDUser,
+                    model.IDGroup,
+                    model.IDStatus
+                  };
+                    object[] parametrs = parametrList.ToArray();
+                    int result = ctx.Database.ExecuteSqlCommand(query, parametrs);
+                }
+            }
+            catch (Exception ex) { }
+
+        }*/
         public bool UpdateStatus(Cadastre Records)
         {
             try

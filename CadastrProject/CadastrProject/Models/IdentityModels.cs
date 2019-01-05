@@ -35,9 +35,12 @@ namespace CadastrProject.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+        public object AspNetUsers { get; internal set; }
+
         /*
-      //  public object AspNetUsers { get; internal set; }
-      public DbSet<AspNetUsers> AspNetUsers { get; set; }*/
+//  public object AspNetUsers { get; internal set; }
+public DbSet<AspNetUsers> AspNetUsers { get; set; }*/
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

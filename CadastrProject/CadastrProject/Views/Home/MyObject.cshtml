@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CadastrProject.Models.Cadastre>
+@{
+    ViewBag.Title = "Мои объекты";
+}
+<h2>Мои объекты</h2>
+<table class="table">
+    <tr>
+        <th>
+            Тип кадастра
+        </th>
+        <th>
+            Адрес
+        </th>
+        <th>
+            Кадастровая стоимость
+        </th>
+        <th>
+            Площадь
+        </th>
+        <th>
+            Дата подачи заявки
+        </th>
+        <th>
+            Дата регистрации
+        </th>
+        <th>
+            Статус
+        </th>
+
+        <th> Действия</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {        
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDGroup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Square)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_application)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_registration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDStatus)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+    }
+</table>
+@Html.ActionLink("Вернуться в главное меню", "Index")

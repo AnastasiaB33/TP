@@ -1,5 +1,6 @@
 ﻿using CadastrProject.DAO;
 using CadastrProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,18 @@ namespace CadastrProject.Controllers
         CadastreDAO recordsDAO = new CadastreDAO();
        // OwnerDAO ownerDAO = new OwnerDAO();
         StatusDAO statusDAO = new StatusDAO();
+        
+        public ActionResult MyObject()
+        {
+            string userid = User.Identity.GetUserId();
+             var myobject = recordsDAO.GetMyObject(userid);
+           // var myobject = userid == null ? recordsDAO.GetMyObject(userid) : recordsDAO.GetMyObject(userid).Where(x => x.AspNetUsers.Id == userid);
+            return View(myobject);
+        }
+        public ActionResult AboutMe()
+        {
+            return View("AboutMe");
+        }
         //GET:/Home
         public ActionResult Index(int? id)
         {
@@ -52,6 +65,8 @@ namespace CadastrProject.Controllers
             ViewData["IDStatus"] = new SelectList(groups, "Id", "Name", IDStatus);
             return groups.Count() > 0;
         }*/
+
+        /* работало, но надо прописывать ид 
         //GET:/Home/Create
         [Authorize]
         public ActionResult Create()
@@ -60,29 +75,62 @@ namespace CadastrProject.Controllers
                 return RedirectToAction("Index");
             return View("Create");
         }
-
         //POST:/Home/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(int IDGroup,/*int IDStatus,*/[Bind(Exclude = "Id")] Cadastre Cadastrs)
+        public ActionResult Create(int IDGroup, [Bind(Exclude = "Id")] Cadastre Cadastrs)
         {
             ViewDataSelectList(IDGroup);
-            //  ViewData_SelectList(IDStatus);
-            SelectList status = new SelectList(statusDAO.GetAllStatus(), "id", "name");
-            ViewBag.Status = status;
-            try
-            {
-                if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, /*IDStatus,*/ Cadastrs))
+        //ViewData_SelectList(IDStatus);
+        SelectList status = new SelectList(statusDAO.GetAllStatus(), "id", "name");
+        ViewBag.Status = status;
+             try
+             {
+                 if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, Cadastrs))
+                {
                     return RedirectToAction("Ok");
-                else
-                    return View("../Home/Error");
+    }
+                 else
+                     return View("../Home/Error");
+}
+             catch
+             {
+            return View("Index");
             }
-            catch
-            {
-                return View("Index");
+        }*/
+        
+       
+        //GET:/Home/Create
+        [Authorize]
+        public ActionResult Create(string id)
+        {
+            string userId = User.Identity.GetUserId();
+            Cadastre cadastre = new Cadastre();
+            cadastre.IDUser = userId;        
+            return View(cadastre);
+        }
+        //POST:/Home/Create
+        [HttpPost]
+        [Authorize]
+        public ActionResult Create(Cadastre model)
+        {
+             try
+             {
+                CadastreDAO.addCadastrs(model);
+                if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, model))
+                {
+                   }
+                 else 
+                      return RedirectToAction("Ok");
+                      return View("Error");
+             }
+             catch
+             {
+            return View("Index");
             }
         }
 
+        //редактирование статуса и даты регистрации, только админ
         //GET:/Home/Edit
         //[Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
@@ -103,6 +151,7 @@ namespace CadastrProject.Controllers
 
             return View("Ok");
         }
+        
         //POST:/Home/Edit
         [HttpPost]
        // [Authorize(Roles = "Admin")]
@@ -122,6 +171,8 @@ namespace CadastrProject.Controllers
             }
         }
 
+
+        //удаление, только админ
         //GET:/Home/Delete
      //   [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
@@ -145,6 +196,10 @@ namespace CadastrProject.Controllers
             {
                 return View(recordsDAO.getCadastrs(id));
             }
+        }
+        public ActionResult Contact()
+        {
+            return View("Contact");
         }
     }
 }

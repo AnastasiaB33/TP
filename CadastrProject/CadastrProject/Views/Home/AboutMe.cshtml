@@ -1,0 +1,37 @@
+﻿@model CadastrProject.Models.IndexViewModel
+<h2>Мои данные</h2>
+<div>
+    @{
+    ViewBag.Title = "AboutMe";
+     }
+
+<h2>Мои данные</h2>
+    <dl class="dl-horizontal">
+      
+        
+            <dt>Фамилия:</dt>
+            <dd>
+                @Model.AspNetUsers.Surname
+            </dd>
+
+            <dt>Имя:</dt>
+            <dd>
+                @Model.AspNetUsers.Name
+            </dd>
+
+            <dt>Паспорт:</dt>
+            <dd>
+                @Model.AspNetUsers.Passport
+            </dd>
+
+            <dt>Инн:</dt>
+            <dd>
+                @Model.AspNetUsers.Inn
+            </dd>
+
+            <dt>Почта:</dt>
+            <dd>
+                @Model.AspNetUsers.Email
+            </dd>
+    </dl>
+</div>
