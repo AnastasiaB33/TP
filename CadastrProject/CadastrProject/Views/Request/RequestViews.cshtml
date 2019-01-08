@@ -10,10 +10,7 @@
 <table class="table">
     <tr>
         <th>
-            ID заявки                         
-        </th>
-        <th>
-            Дата подачи заявки поставки на учет
+            Дата
         </th>
         <th>
             ID кадастра
@@ -34,9 +31,6 @@
             Владелец
         </th>
         <th>
-            Дата подачи заявки на снятие с учета
-        </th>
-        <th>
             Дата снятия с учета
         </th>
         <th>
@@ -52,10 +46,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date_application)
+                @Html.DisplayFor(modelItem => item.Date_request)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IDCadastr)
@@ -75,9 +66,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IDUser)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date_request)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.DateDelete)
             </td>
@@ -88,9 +77,9 @@
                 @Html.DisplayFor(modelItem => item.Cause)
             </td>
             <td>
-
-                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
+                
+                @Html.ActionLink("Редактировать статус", "../Request/EditStatus", new { id = item.Id }) |
+                @Html.ActionLink("Просмотреть", "../Request/Details", new { id = item.Id }) |
             </td>
         </tr>
 

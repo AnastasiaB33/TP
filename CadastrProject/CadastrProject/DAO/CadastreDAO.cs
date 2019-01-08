@@ -40,7 +40,7 @@ namespace CadastrProject.DAO
                     //myobject.AddRange(_entities.Database.SqlQuery<Cadastre>(query, id).ToList());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             { }
             return myobject;
         }

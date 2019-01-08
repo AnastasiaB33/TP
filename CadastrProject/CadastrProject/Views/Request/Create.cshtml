@@ -25,7 +25,13 @@
                 @Html.ValidationMessageFor(model => model.IDCadastr, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDGroup, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDGroup", (IEnumerable<SelectListItem>)ViewData["IDGroup"], new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDGroup, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Date_application, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

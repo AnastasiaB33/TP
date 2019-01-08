@@ -20,7 +20,6 @@ namespace CadastrProject.Controllers
         {
             string userid = User.Identity.GetUserId();
              var myobject = recordsDAO.GetMyObject(userid);
-           // var myobject = userid == null ? recordsDAO.GetMyObject(userid) : recordsDAO.GetMyObject(userid).Where(x => x.AspNetUsers.Id == userid);
             return View(myobject);
         }
         public ActionResult AboutMe()
@@ -206,23 +205,18 @@ namespace CadastrProject.Controllers
                 return View(recordsDAO.getCadastrs(id));
             }
         }
-        public ActionResult Contact()
-        {
-            return View("Contact");
-        }
 
         //редактирование данных пользователя
         //GET:/Home/Edit
-        public ActionResult EditUser(string id)
+        public ActionResult EditUser()
         {
-            AspNetUsers Records = userDAO.GetUserById(id);
-
+            AspNetUsers Records = userDAO.GetUserById(User.Identity.GetUserId());
+           
             if (Records != null)
             { 
                 return View(Records);
             }
-            //return View(userDAO.GetUserById(id));
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); 
         }
 
         //редактирование данных пользователя
@@ -233,7 +227,7 @@ namespace CadastrProject.Controllers
             if (id !=null && Records != null && ModelState.IsValid)
             {
                userDAO.UpdateUser(Records);
-               return RedirectToAction("Index");
+               return RedirectToAction("../Home/AboutMe");
             }
             return View("EditUser", userDAO.GetUserById(id));
 

@@ -63,12 +63,7 @@
                 <td>
                     @if (item.IDStatus == 1)
                     {
-                        <input type="button" class="btn btn-default" value="Редактировать заявку" onclick="location.href = '@Url.Action("EditObject",new {id = item.Id})'" />
-                         @Html.ActionLink("Редактировать заявку", "EditObject", new { id = item.Id })
-                    }
-                    |
-                    @if (item.IDStatus == 1)
-                    {
+                        <input type="button" class="btn btn-default" value="Редактировать заявку" onclick="location.href = '@Url.Action("EditObject",new {id = item.Id})'" />                                  
                         <input type="button" class="btn btn-default" value="Отправить" onclick="location.href = '@Url.Action("Sent", new {id = item.Id})'" />                   
                     }
                     |
@@ -79,7 +74,7 @@
                     @Html.ActionLink("Удалить для пользователя", "Delete", new { id = item.Id })
                       }
                     |
-                    @if (item.IDStatus == 5)
+                    @if (item.IDStatus == 5 && User.IsInRole("Admin"))
                     {
                         @Html.ActionLink("Удалить для админа ", "Delete", new { id = item.Id })
                     }

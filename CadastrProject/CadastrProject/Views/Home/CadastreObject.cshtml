@@ -15,7 +15,7 @@
     }
 </ul>
 <p>
-    @Html.ActionLink("Регистрация нового объекта", "Create")
+    @Html.ActionLink("Регистрация нового объекта", "../Home/Create")
 </p>
 <p>
     @Html.ActionLink("Снять объект с учёта", "../Request/Create")
@@ -85,10 +85,13 @@
                 @Html.DisplayFor(modelItem => item.Status.Name)
             </td>
             <td>
-
-                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
+                @if (User.IsInRole("Admin"))
+                {
+                @Html.ActionLink("Редактировать статус", "Edit", new { id = item.Id })
                 @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                }
+                @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
+                
             </td>
         </tr>
     }

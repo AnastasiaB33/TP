@@ -16,6 +16,7 @@ namespace CadastrProject.Models
     {
         public int Id { get; set; }
         public int IDCadastr { get; set; }
+        public int IDGroup { get; set; }
         public System.DateTime Date_application { get; set; }
         public string Address { get; set; }
         public double Value { get; set; }
@@ -28,6 +29,7 @@ namespace CadastrProject.Models
         public string Cause { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
+        public virtual Group Group { get; set; }
         public virtual Status Status { get; set; }
     }
 }

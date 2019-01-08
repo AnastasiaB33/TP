@@ -12,36 +12,50 @@ namespace CadastrProject.DAO
         //создаем экземпляр класса сущностей
         private CadastrBDEntities1 _entities = new CadastrBDEntities1();
 
-        /*21.12.2018
-        private static readonly ApplicationDbContext _appContext = new ApplicationDbContext();
-        public static IEnumerable<AspNetUsers> GetRemRequestForClient(string id)
+        public IEnumerable<Removal_Request> GetAllRequest()
         {
-            return _appContext.AspNetUsers.Where(s => s.Id == id);
+            return (from c in _entities.Removal_Request.Include("Group") select c);
         }
-        */
         public Removal_Request getRequest(int id)
         {
             return (from c in _entities.Removal_Request.Include("Group")
                     where c.Id == id
                     select c).FirstOrDefault();
         }
-
-        public bool addRequest(Removal_Request request)
+        public List<Removal_Request> GetMyRequest(string id)
+        {
+            List<Removal_Request> myrequest = new List<Removal_Request>();
+            try
+            {
+                {
+                    myrequest = _entities.Removal_Request
+                        .Include("Group")
+                        .Include("Status")
+                        .Where(c => c.IDUser == id).ToList();                 
+                }
+            }
+            catch (Exception)
+            { }
+            return myrequest;
+        }
+              
+        public bool UpdateStatus(Removal_Request Records)
         {
             try
             {
-                _entities.Removal_Request.Add(request);
+                var Entity = _entities.Removal_Request.FirstOrDefault(x => x.Id == Records.Id);
+                Entity.IDStatus = Records.IDStatus;
+                Entity.DateDelete = Records.DateDelete;
                 _entities.SaveChanges();
-                return true;
             }
             catch
             {
                 return false;
             }
-
+            return true;
         }
 
-        
+        /*
          public List<Removal_Request> GetAllRequest()
         {
             Connect();
@@ -72,8 +86,8 @@ namespace CadastrProject.DAO
             catch (Exception) { }
             finally { Disconnect(); }
             return requestList;
-        }
-        /*
+        }*/
+        
         public bool AddRequest(Removal_Request request)
         {
             bool result = true;
@@ -81,17 +95,21 @@ namespace CadastrProject.DAO
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO  Removal_Request (DateDelete, IDCadastr, IDOwner, IDStatus, Address, Value, Square, Date_registration, Cause) " +
-                    "VALUES (@DateDelete, @IDCadastr, @IDOwner, @IDStatus,@Address, @Value, @Square, @Date_registration, @Cause)", Connection);
-                cmd.Parameters.AddWithValue("@DateDelete", request.DateDelete);
+                    "INSERT INTO  Removal_Request ( IDUser,IDCadastr, IDGroup,IDStatus, Address,Date_application, Value, Square, Date_registration, Cause,Date_request) " +
+                    "VALUES ( @IDUser,@IDCadastr,@IDGroup, @IDStatus,@Address,@Date_application, @Value, @Square, @Date_registration, @Cause,@Date_request)", Connection);
+                cmd.Parameters.AddWithValue("@IDUser", request.IDUser);
                 cmd.Parameters.AddWithValue("@IDCadastr", request.IDCadastr);
                 cmd.Parameters.AddWithValue("@IDStatus", request.IDStatus);
+                cmd.Parameters.AddWithValue("@IDGroup", request.IDGroup);
                 cmd.Parameters.AddWithValue("@Address", request.Address);
+                cmd.Parameters.AddWithValue("@Date_application", request.Date_application);
                 cmd.Parameters.AddWithValue("@Value", request.Value);
                 cmd.Parameters.AddWithValue("@Square", request.Square);
                 cmd.Parameters.AddWithValue("@Date_registration", request.Date_registration);
                 cmd.Parameters.AddWithValue("@Cause", request.Cause);
+                cmd.Parameters.AddWithValue("@Date_request", request.Date_request);
                 cmd.ExecuteNonQuery();
+                
             }
             catch (Exception)
             {
@@ -99,8 +117,30 @@ namespace CadastrProject.DAO
             }
             finally { Disconnect(); }
             return result;
-        }*/
-
+        }
+        public bool UpdateRequest(Removal_Request records)
+        {
+            try
+            {
+                var Entity = _entities.Removal_Request.FirstOrDefault(x => x.Id == records.Id);
+                Entity.Address = records.Address;
+                Entity.Value = records.Value;
+                Entity.Square = records.Square;
+                Entity.IDGroup = records.IDGroup;
+                Entity.IDCadastr = records.IDCadastr;
+                Entity.Date_registration = records.Date_registration;
+                Entity.Date_application = records.Date_application;
+                Entity.Date_request = records.Date_request;
+                Entity.Cause = records.Cause;
+                _entities.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+        /*
         public void EditRequest(Removal_Request request)
         {
             try
@@ -123,7 +163,7 @@ namespace CadastrProject.DAO
             {
                 Disconnect();
             }
-        }
+        }*/
         /*
 public Removal_Request getRequest(int id)
 {

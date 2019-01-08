@@ -348,10 +348,13 @@
     <Content Include="Views\Home\MyObject.cshtml" />
     <Content Include="Views\Home\EditUser.cshtml" />
     <Content Include="Views\Home\EditObject.cshtml" />
+    <Content Include="Views\Request\Details.cshtml" />
+    <Content Include="Views\Request\EditStatus.cshtml" />
+    <Content Include="Views\Request\MyRequest.cshtml" />
+    <Content Include="Views\Request\EditRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

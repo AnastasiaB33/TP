@@ -6,11 +6,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="jumbotron">
+    <center>
     <h1>Кадастровое управление</h1>
+    </center>
     <p class="lead">Просмотреть зарегистрированные объекты</p>
     <p><a href="../Home/CadastreObject" class="btn btn-primary btn-lg">Перейти &raquo;</a></p>
     <p class="lead">Поставить объект на кадастровый учет</p>
     <p><a href="../Home/Create" class="btn btn-primary btn-lg">Перейти &raquo;</a></p>
+    <p class="lead">Снять объект с учёта</p>
+    <a href="../Request/Create" class="btn btn-primary btn-lg">Перейти &raquo;</a>
 </div>
 
 @if (User.IsInRole("Admin"))
@@ -33,14 +37,6 @@
     @Html.ActionLink("Просмотреть зарегистрированные объекты", "CadastreObject")
     <br>
     <p>
-        @if (User.IsInRole("Admin"))
-        {
-
-            @Html.ActionLink("Просмотреть заявки на регистрацию объекта (сейчас все заявки)", "CadastreRequest")
-            <br>
-            @Html.ActionLink("Просмотреть заявки на снятие с учета", "../Request/RequestViews")
-            <br>
-        }
         @Html.ActionLink("Мои заявки ", "MyObject")
         <br>
         @Html.ActionLink("Просмотреть заявки на регистрацию объекта", "CadastreRequest")

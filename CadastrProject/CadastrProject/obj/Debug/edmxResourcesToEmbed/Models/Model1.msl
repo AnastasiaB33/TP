@@ -89,6 +89,7 @@
         <MappingFragment StoreEntitySet="Removal_Request">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IDCadastr" ColumnName="IDCadastr" />
+          <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
           <ScalarProperty Name="Date_application" ColumnName="Date_application" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Value" ColumnName="Value" />

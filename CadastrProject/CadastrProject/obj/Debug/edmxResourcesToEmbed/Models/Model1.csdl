@@ -62,7 +62,7 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="Cadastre" Relationship="Self.FK__Cadastre__IDUser__6E01572D" FromRole="AspNetUsers" ToRole="Cadastre" />
-    <NavigationProperty Name="Removal_Request" Relationship="Self.FK__Removal_R__IDUse__71D1E811" FromRole="AspNetUsers" ToRole="Removal_Request" />
+    <NavigationProperty Name="Removal_Request" Relationship="Self.FK__Removal_R__IDUse__03F0984C" FromRole="AspNetUsers" ToRole="Removal_Request" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
   <EntityType Name="Cadastre">
@@ -90,6 +90,7 @@
     <Property Name="Type" Type="String" MaxLength="35" FixedLength="true" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Cadastre" Relationship="Self.IDGroup" FromRole="Group" ToRole="Cadastre" />
+    <NavigationProperty Name="Removal_Request" Relationship="Self.FK__Removal_R__IDGro__05D8E0BE" FromRole="Group" ToRole="Removal_Request" />
   </EntityType>
   <EntityType Name="Removal_Request">
     <Key>
@@ -97,6 +98,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="IDCadastr" Type="Int32" Nullable="false" />
+    <Property Name="IDGroup" Type="Int32" Nullable="false" />
     <Property Name="Date_application" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Value" Type="Double" Nullable="false" />
@@ -107,8 +109,9 @@
     <Property Name="Date_request" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="IDStatus" Type="Int32" Nullable="false" />
     <Property Name="Cause" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Removal_R__IDUse__71D1E811" FromRole="Removal_Request" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Status" Relationship="Self.FK__Removal_R__IDSta__70DDC3D8" FromRole="Removal_Request" ToRole="Status" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Removal_R__IDUse__03F0984C" FromRole="Removal_Request" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Group" Relationship="Self.FK__Removal_R__IDGro__05D8E0BE" FromRole="Removal_Request" ToRole="Group" />
+    <NavigationProperty Name="Status" Relationship="Self.FK__Removal_R__IDSta__02FC7413" FromRole="Removal_Request" ToRole="Status" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -117,7 +120,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Cadastre" Relationship="Self.IDStatus" FromRole="Status" ToRole="Cadastre" />
-    <NavigationProperty Name="Removal_Request" Relationship="Self.FK__Removal_R__IDSta__70DDC3D8" FromRole="Status" ToRole="Removal_Request" />
+    <NavigationProperty Name="Removal_Request" Relationship="Self.FK__Removal_R__IDSta__02FC7413" FromRole="Status" ToRole="Removal_Request" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -159,7 +162,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Removal_R__IDUse__71D1E811">
+  <Association Name="FK__Removal_R__IDUse__03F0984C">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Removal_Request" Type="Self.Removal_Request" Multiplicity="*" />
     <ReferentialConstraint>
@@ -195,7 +198,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Removal_R__IDSta__70DDC3D8">
+  <Association Name="FK__Removal_R__IDGro__05D8E0BE">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Removal_Request" Type="Self.Removal_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Removal_Request">
+        <PropertyRef Name="IDGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Removal_R__IDSta__02FC7413">
     <End Role="Status" Type="Self.Status" Multiplicity="1" />
     <End Role="Removal_Request" Type="Self.Removal_Request" Multiplicity="*" />
     <ReferentialConstraint>
@@ -233,7 +248,7 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Cadastre" EntitySet="Cadastre" />
     </AssociationSet>
-    <AssociationSet Name="FK__Removal_R__IDUse__71D1E811" Association="Self.FK__Removal_R__IDUse__71D1E811">
+    <AssociationSet Name="FK__Removal_R__IDUse__03F0984C" Association="Self.FK__Removal_R__IDUse__03F0984C">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Removal_Request" EntitySet="Removal_Request" />
     </AssociationSet>
@@ -245,7 +260,11 @@
       <End Role="Status" EntitySet="Status" />
       <End Role="Cadastre" EntitySet="Cadastre" />
     </AssociationSet>
-    <AssociationSet Name="FK__Removal_R__IDSta__70DDC3D8" Association="Self.FK__Removal_R__IDSta__70DDC3D8">
+    <AssociationSet Name="FK__Removal_R__IDGro__05D8E0BE" Association="Self.FK__Removal_R__IDGro__05D8E0BE">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Removal_Request" EntitySet="Removal_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Removal_R__IDSta__02FC7413" Association="Self.FK__Removal_R__IDSta__02FC7413">
       <End Role="Status" EntitySet="Status" />
       <End Role="Removal_Request" EntitySet="Removal_Request" />
     </AssociationSet>

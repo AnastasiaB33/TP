@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc8d50240a2247a990511b90df5255b2" Name="Diagram1" ZoomLevel="99">
-        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Cadastre" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Group" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Removal_Request" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+      <Diagram DiagramId="cd13eff117a944029e6d2dd0cd0bca59" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Cadastre" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Group" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Removal_Request" Width="1.5" PointX="8.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__Cadastre__IDUser__6E01572D" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__Removal_R__IDUse__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Removal_R__IDUse__03F0984C" ManuallyRouted="false" />
         <AssociationConnector Association="Model.IDGroup" ManuallyRouted="false" />
         <AssociationConnector Association="Model.IDStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__Removal_R__IDSta__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Removal_R__IDGro__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Removal_R__IDSta__02FC7413" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
