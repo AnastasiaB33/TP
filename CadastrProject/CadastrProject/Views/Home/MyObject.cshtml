@@ -6,6 +6,9 @@
 <table class="table">
     <tr>
         <th>
+            № 
+        </th>
+        <th>
             Тип кадастра
         </th>
         <th>
@@ -34,7 +37,10 @@
     {        
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IDGroup)
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Group.Type)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Address)
@@ -52,15 +58,34 @@
                     @Html.DisplayFor(modelItem => item.Date_registration)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IDStatus)
+                    @Html.DisplayFor(modelItem => item.Status.Name)
                 </td>
                 <td>
-
-                    @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Просмотреть", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                    @if (item.IDStatus == 1)
+                    {
+                        <input type="button" class="btn btn-default" value="Редактировать заявку" onclick="location.href = '@Url.Action("EditObject",new {id = item.Id})'" />
+                         @Html.ActionLink("Редактировать заявку", "EditObject", new { id = item.Id })
+                    }
+                    |
+                    @if (item.IDStatus == 1)
+                    {
+                        <input type="button" class="btn btn-default" value="Отправить" onclick="location.href = '@Url.Action("Sent", new {id = item.Id})'" />                   
+                    }
+                    |
+                    @Html.ActionLink("Просмотреть", "Details", new { id = item.Id })       
+                    |
+                    @if (item.IDStatus <3)
+                      {
+                    @Html.ActionLink("Удалить для пользователя", "Delete", new { id = item.Id })
+                      }
+                    |
+                    @if (item.IDStatus == 5)
+                    {
+                        @Html.ActionLink("Удалить для админа ", "Delete", new { id = item.Id })
+                    }
                 </td>
             </tr>
     }
 </table>
+
 @Html.ActionLink("Вернуться в главное меню", "Index")

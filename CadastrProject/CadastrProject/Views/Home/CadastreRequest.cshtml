@@ -3,19 +3,22 @@
     ViewBag.Title = "Заявки";
 }
 <h2>Заявки</h2>
-<h5>Виды кадастровых объектов</h5>
+<h5>Классификация заявок</h5>
 <ul id="groups">
-   @foreach (var item in (IEnumerable<CadastrProject.Models.Group>)ViewData["Group"])
+   @foreach (var item in (IEnumerable<CadastrProject.Models.Status>)ViewData["Status"])
    {
         <li>
             <div>
-                @Html.ActionLink(item.Type, "CadastreRequest", new { id = item.Id })
+                @Html.ActionLink(item.Name, "CadastreRequest", new { id = item.Id })
             </div>
         </li>
     }
 </ul>
 <table class="table">
     <tr>
+        <th>
+            №
+        </th>
         <th>
             Тип объекта
         </th>
@@ -48,6 +51,9 @@
     {
        // if (item.Status.Id == 2){
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Group.Type)
             </td>

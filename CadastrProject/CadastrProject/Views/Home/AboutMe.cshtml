@@ -1,37 +1,42 @@
-﻿@model CadastrProject.Models.IndexViewModel
+﻿@model CadastrProject.Models.AspNetUsers
 <h2>Мои данные</h2>
 <div>
     @{
-    ViewBag.Title = "AboutMe";
-     }
-
-<h2>Мои данные</h2>
+        ViewBag.Title = "AboutMe";
+    }
     <dl class="dl-horizontal">
-      
-        
-            <dt>Фамилия:</dt>
-            <dd>
-                @Model.AspNetUsers.Surname
-            </dd>
 
-            <dt>Имя:</dt>
-            <dd>
-                @Model.AspNetUsers.Name
-            </dd>
+        <dt>Id:</dt>
+        <dd>
+            @Model.Id
+        </dd>
 
-            <dt>Паспорт:</dt>
-            <dd>
-                @Model.AspNetUsers.Passport
-            </dd>
+        <dt>Фамилия:</dt>
+        <dd>
+            @Model.Surname
+        </dd>
 
-            <dt>Инн:</dt>
-            <dd>
-                @Model.AspNetUsers.Inn
-            </dd>
+        <dt>Имя:</dt>
+        <dd>
+            @Model.Name
+        </dd>
 
-            <dt>Почта:</dt>
-            <dd>
-                @Model.AspNetUsers.Email
-            </dd>
+        <dt>Паспорт:</dt>
+        <dd>
+            @Model.Passport
+        </dd>
+
+        <dt>Инн:</dt>
+        <dd>
+            @Model.Inn
+        </dd>
+
+        <dt>Почта:</dt>
+        <dd>
+            @Model.Email
+        </dd>
     </dl>
+    <p>
+        @Html.ActionLink("Редактировать данные", "EditUser")
+    </p>
 </div>

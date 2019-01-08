@@ -1,5 +1,6 @@
 ﻿using CadastrProject.DAO;
 using CadastrProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,34 +36,42 @@ namespace CadastrProject.Controllers
 
         }
 
-        // GET: Request/Create
-        public ActionResult Create()
+        //GET:/Home/Create
+        [Authorize]
+        public ActionResult Create(string id)
         {
-            return View();
+            var group = new SelectList(requestDAO.GetAllRequest(), "Id", "Type");
+            ViewData["IDGroup"] = group;
+            string userId = User.Identity.GetUserId();
+            Removal_Request request = new Removal_Request();
+            request.IDUser = userId;
+            return View("Create", request);
         }
 
-        // POST: Request/Create
+        //POST:/Home/Create
         [HttpPost]
-        public ActionResult Create(Removal_Request request)
+        [Authorize]
+        public ActionResult Create(Removal_Request model)
         {
+            var group = new SelectList(requestDAO.GetAllRequest(), "Id", "Type");
+            ViewData["IDGroup"] = group;
+            string userId = User.Identity.GetUserId();
+            model.IDUser = userId;
             try
             {
-                if (requestDAO.AddRequest(request))
+                if (requestDAO.addRequest(model))
                 {
-                    return RedirectToAction("../Home/Ok");
+                    return RedirectToAction("Ok");
                 }
-                else
-                {
 
-                    return View("Error");
-                }
+                return View("RequestView");
             }
-            catch
+            catch (Exception)
             {
-                return View("Create");
+                return View("Error");
             }
         }
-
+        
         // GET: Request/Edit/5
         public ActionResult Edit(int id)
         {

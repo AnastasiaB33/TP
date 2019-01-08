@@ -32,8 +32,12 @@ namespace CadastrProject.DAO
             {
               //  using (var ctx = new CadastrBDEntities1())
                 {
-                    string query = "SELECT * FROM Cadastre WHERE IDUser=@P0";
-                    myobject.AddRange(_entities.Database.SqlQuery<Cadastre>(query, id).ToList());
+                    myobject = _entities.Cadastre
+                        .Include("Group")
+                        .Include("Status")
+                        .Where(c => c.IDUser==id).ToList();
+                    //string query = "SELECT * FROM Cadastre WHERE IDUser=@P0";
+                    //myobject.AddRange(_entities.Database.SqlQuery<Cadastre>(query, id).ToList());
                 }
             }
             catch (Exception ex)
@@ -74,12 +78,12 @@ namespace CadastrProject.DAO
                     select c).FirstOrDefault();
         }
         
-        public bool addCadastrs(int IDGroup, Cadastre Cadastrs)
+        public bool addCadastrs( Cadastre cadastre)
         {
             try
             {
-                Cadastrs.Group = GetGroup(IDGroup);
-                _entities.Cadastre.Add(Cadastrs);
+               //  cadastre.Group = GetGroup(IDGroup);
+                _entities.Cadastre.Add(cadastre);
                 _entities.SaveChanges();
                 return true;
             }
@@ -94,8 +98,7 @@ namespace CadastrProject.DAO
         {
             try
             {
-                using (var ctx = new CadastrBDEntities1())
-                {
+                
                     string query = "INSERT INTO Cadastre (Address, Value, Square, Date_application, IDUser, IDGroup, IDStatus) VALUES (@P0, @P1, @P2, @P3, @P4, @P5, @P6)";
                     List<object> parametrList = new List<object>
                   {
@@ -108,12 +111,13 @@ namespace CadastrProject.DAO
                     model.IDStatus
                   };
                     object[] parametrs = parametrList.ToArray();
-                    int result = ctx.Database.ExecuteSqlCommand(query, parametrs);
-                }
+                    int result = _entities.Database.ExecuteSqlCommand(query, parametrs);
+                
             }
             catch (Exception ex) { }
 
         }*/
+        
         public bool UpdateStatus(Cadastre Records)
         {
             try
@@ -129,8 +133,7 @@ namespace CadastrProject.DAO
             }
             return true;
         }      
-        
-
+   
         /*21.12.2018
             public static IEnumerable<AspNetUsers> GetCadastreForClient(string id)
         {
@@ -170,6 +173,25 @@ namespace CadastrProject.DAO
             {
                 //Удаляем запись из таблицы
                 _entities.Cadastre.Remove(originalCadastrs);
+                _entities.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool UpdateObject(Cadastre records)
+        {
+            try
+            {
+                var Entity = _entities.Cadastre.FirstOrDefault(x => x.Id == records.Id);
+                Entity.Address = records.Address;
+                Entity.Value = records.Value;
+                Entity.Square = records.Square;
+                Entity.IDGroup = records.IDGroup;
+                Entity.Date_application = records.Date_application;
                 _entities.SaveChanges();
             }
             catch

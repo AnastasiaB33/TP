@@ -13,9 +13,9 @@ namespace CadastrProject.Controllers
     {
         GroupDAO groupDAO = new GroupDAO();
         CadastreDAO recordsDAO = new CadastreDAO();
-       // OwnerDAO ownerDAO = new OwnerDAO();
         StatusDAO statusDAO = new StatusDAO();
-        
+        AspNetUsersDAO userDAO = new AspNetUsersDAO();
+
         public ActionResult MyObject()
         {
             string userid = User.Identity.GetUserId();
@@ -25,7 +25,9 @@ namespace CadastrProject.Controllers
         }
         public ActionResult AboutMe()
         {
-            return View("AboutMe");
+            AspNetUsersDAO dao = new AspNetUsersDAO();
+            var user = dao.GetUserById(User.Identity.GetUserId());
+            return View(user);
         }
         //GET:/Home
         public ActionResult Index(int? id)
@@ -43,8 +45,8 @@ namespace CadastrProject.Controllers
         }
         public ActionResult CadastreRequest(int? id)
         {
-            ViewData["Group"] = groupDAO.GetAllGroup();
-            var records = id == null ? recordsDAO.GetAllCadastrs() : recordsDAO.GetAllCadastrs().Where(x => x.Group.Id == id);
+            ViewData["Status"] = statusDAO.GetAllStatus();
+            var records = id == null ? recordsDAO.GetAllCadastrs() : recordsDAO.GetAllCadastrs().Where(x => x.Status.Id == id);
             return View(records);
         }
 
@@ -65,8 +67,8 @@ namespace CadastrProject.Controllers
             ViewData["IDStatus"] = new SelectList(groups, "Id", "Name", IDStatus);
             return groups.Count() > 0;
         }*/
-
-        /* работало, но надо прописывать ид 
+            /*
+        // работало, но надо прописывать ид 
         //GET:/Home/Create
         [Authorize]
         public ActionResult Create()
@@ -75,6 +77,7 @@ namespace CadastrProject.Controllers
                 return RedirectToAction("Index");
             return View("Create");
         }
+        
         //POST:/Home/Create
         [HttpPost]
         [Authorize]
@@ -104,29 +107,35 @@ namespace CadastrProject.Controllers
         [Authorize]
         public ActionResult Create(string id)
         {
+            var group = new SelectList(groupDAO.GetAllGroup(), "Id", "Type");
+            ViewData["IDGroup"] = group;
             string userId = User.Identity.GetUserId();
             Cadastre cadastre = new Cadastre();
-            cadastre.IDUser = userId;        
-            return View(cadastre);
+            cadastre.IDUser = userId; 
+            return View("Create", cadastre);
         }
+
         //POST:/Home/Create
         [HttpPost]
         [Authorize]
         public ActionResult Create(Cadastre model)
         {
-             try
-             {
-                CadastreDAO.addCadastrs(model);
-                if (ModelState.IsValid && recordsDAO.addCadastrs(IDGroup, model))
+            var group = new SelectList(groupDAO.GetAllGroup(), "Id", "Type");           
+            ViewData["IDGroup"] = group;
+            string userId = User.Identity.GetUserId();           
+            model.IDUser = userId;
+            try
+            {
+                if (recordsDAO.addCadastrs(model))
                 {
-                   }
-                 else 
-                      return RedirectToAction("Ok");
-                      return View("Error");
-             }
-             catch
-             {
-            return View("Index");
+                    return RedirectToAction("Ok");
+                }
+
+                return View("CadastreObject");
+            }
+            catch (Exception)
+            {
+                return View("Error");
             }
         }
 
@@ -201,5 +210,98 @@ namespace CadastrProject.Controllers
         {
             return View("Contact");
         }
+
+        //редактирование данных пользователя
+        //GET:/Home/Edit
+        public ActionResult EditUser(string id)
+        {
+            AspNetUsers Records = userDAO.GetUserById(id);
+
+            if (Records != null)
+            { 
+                return View(Records);
+            }
+            //return View(userDAO.GetUserById(id));
+            return RedirectToAction("Index");
+        }
+
+        //редактирование данных пользователя
+        //POST:/Home/Edit
+        [HttpPost]
+        public ActionResult EditUser(string id, AspNetUsers Records)
+        {
+            if (id !=null && Records != null && ModelState.IsValid)
+            {
+               userDAO.UpdateUser(Records);
+               return RedirectToAction("Index");
+            }
+            return View("EditUser", userDAO.GetUserById(id));
+
+        }
+        /*
+        //POST:/Home/Edit
+        [HttpPost]
+        public ActionResult EditUser(AspNetUsers Records)
+        {
+            ViewDataSelectList(-1);
+            try
+            {
+                if (ModelState.IsValid && userDAO.UpdateUser(Records))
+                    return RedirectToAction("Ok");
+                else
+                    return View("Error");
+            }
+            catch
+            {
+                return View("Index");
+            }
+        }*/
+
+
+        //редактирование заявок
+        //GET:/Home/Edit
+        //[Authorize]
+        public ActionResult EditObject(int id)
+        {
+            Cadastre Records = recordsDAO.getCadastrs(id);
+            if (Records != null)
+            {
+                SelectList group = new SelectList(groupDAO.GetAllGroup(), "id", "type", id);
+                ViewBag.Status = group;
+                return View(Records);
+            }
+            /*    if (!ViewDataSelectList(Records.Group.Id))
+                    return RedirectToAction("Index");*/
+            return View(recordsDAO.getCadastrs(id));
+        }
+        //POST:/Home/Edit
+        [HttpPost]
+        //[Authorize]
+        public ActionResult EditObject(int IDGroup, Cadastre Records)
+        {
+            ViewDataSelectList(-1);
+            try
+            {
+                if (ModelState.IsValid && recordsDAO.UpdateObject(Records))
+                    return RedirectToAction("Ok");
+                else
+                    return View("../Home/Error");
+            }
+            catch
+            {
+                return View("Index");
+            }
+        }
+
+        [Authorize]
+        public ActionResult Sent(int id)
+        {
+            Cadastre Records = recordsDAO.getCadastrs(id);
+            Records.IDStatus = 2;
+            recordsDAO.UpdateStatus(Records);
+            return RedirectToAction("../Home/MyObject");
+        }
+
+
     }
 }

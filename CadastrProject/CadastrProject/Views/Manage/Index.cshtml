@@ -23,25 +23,4 @@
             }
             ]
         </dd>
-           @foreach (var item in Model)
-           {
-        <dt>Фамилия:</dt>
-        <dd>
-            @Model.AspNetUsers.Surname
-        </dd>
-
-        <dt>Имя:</dt>
-        <dd>
-            @Model.AspNetUsers.Name
-        </dd>
-
-        <dt>Паспорт:</dt>
-        <dd>
-            @Model.AspNetUsers.Passport
-        </dd>
-           }
-    </dl>
-    Здесь он должен выводить данные о пользователе (его имя, фамилию, паспорт, инн)
-    <br />
-    В будующем - должен выводить объекты пользователя/ заявки пользователя
 </div>

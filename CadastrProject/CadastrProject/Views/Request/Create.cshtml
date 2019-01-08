@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
 <h2>Добавление заявки на удаление кадастрвоого объекта (снятие с учета)</h2>
 
 @using (Html.BeginForm())
@@ -16,7 +14,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Date_request, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date_request, new { @type = "datetime",htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Date_request, new { @type = "datetime", htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Date_request, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,49 +55,50 @@
                 @Html.EditorFor(model => model.Square, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Square, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Date_registration, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Date_registration, new { @type = "datetime", htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Date_registration, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.IDUser, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IDUser, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IDUser, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.IDStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IDStatus, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IDStatus, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cause, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Cause, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cause, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date_registration, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date_registration, new { @type = "datetime", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date_registration, "", new { @class = "text-danger" })
             </div>
         </div>
-        <br />
-        <div>
-            <div>
-                <input type="submit" value="Добавить" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cause, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cause, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cause, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="IDStatus" name="IDStatus" style="display:none" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Создать" class="btn btn-default" onclick="f1()" />
+                <input type="submit" value="Отправить" class="btn btn-default" onclick="f2()" />
             </div>
         </div>
     </div>
-}
-<br />
 
-<div>
+ <script>
+    function f1() {
+        document.getElementById('IDStatus').value = "1"
+    }
+    function f2() {
+        document.getElementById('IDStatus').value = "2"
+    }
+ </script>
+
+ <br />
+ <div>
     @Html.ActionLink("Назад", "RequestViews")
-</div>
+ </div>
 
-<div>
+ <div>
     @Html.ActionLink("На главную", "../Home/Index")
-</div>
+ </div>
+}

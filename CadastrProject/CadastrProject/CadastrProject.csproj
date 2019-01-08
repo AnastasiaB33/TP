@@ -346,6 +346,8 @@
     <Content Include="Views\Request\RequestViews.cshtml" />
     <Content Include="Views\Home\Ok.cshtml" />
     <Content Include="Views\Home\MyObject.cshtml" />
+    <Content Include="Views\Home\EditUser.cshtml" />
+    <Content Include="Views\Home\EditObject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

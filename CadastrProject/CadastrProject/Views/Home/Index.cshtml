@@ -5,25 +5,53 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Меню</h2>
-                @Html.ActionLink("Просмотреть зарегистрированные объекты", "CadastreObject") 
-             <br>
-             <p>
-                @if (User.IsInRole("Admin")) {
+<div class="jumbotron">
+    <h1>Кадастровое управление</h1>
+    <p class="lead">Просмотреть зарегистрированные объекты</p>
+    <p><a href="../Home/CadastreObject" class="btn btn-primary btn-lg">Перейти &raquo;</a></p>
+    <p class="lead">Поставить объект на кадастровый учет</p>
+    <p><a href="../Home/Create" class="btn btn-primary btn-lg">Перейти &raquo;</a></p>
+</div>
 
-                   @Html.ActionLink("Просмотреть все заявки", "CadastreRequest")
-                    <br>
-                   @Html.ActionLink("Просмотреть заявки на снятие с учета", "../Request/RequestViews")
-                   <br>
-                }
-                 @Html.ActionLink("Мои заявки ", "MyObject")
-                 <br>
-                 @Html.ActionLink("Просмотреть заявки", "CadastreRequest")
-             </p>
+@if (User.IsInRole("Admin"))
+{
+<div class="row">
+    <div class="col-md-4">
+        <h2>Заявки на регистрацию объекта</h2>
+        <p><a class="btn btn-default" href="../Home/CadastreRequest">Перейти &raquo;</a></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Заявки на снятие с учета</h2>
+        <p><a class="btn btn-default" href="../Request/RequestViews">Перейти &raquo;</a></p>
+    </div>
+</div>
+}
 
-       
+    <h2>Меню</h2>
+    @Html.ActionLink("Просмотреть зарегистрированные объекты", "CadastreObject")
+    <br>
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+
+            @Html.ActionLink("Просмотреть заявки на регистрацию объекта (сейчас все заявки)", "CadastreRequest")
+            <br>
+            @Html.ActionLink("Просмотреть заявки на снятие с учета", "../Request/RequestViews")
+            <br>
+        }
+        @Html.ActionLink("Мои заявки ", "MyObject")
+        <br>
+        @Html.ActionLink("Просмотреть заявки на регистрацию объекта", "CadastreRequest")
+        <br>
+        @Html.ActionLink("Просмотреть заявки на снятие с учета", "../Request/RequestViews")
+        <br>
+    </p>
 
 
-    
+
+
+
 
 

@@ -11,7 +11,7 @@ namespace CadastrProject.DAO
     {
         //создаем экземпляр класса сущностей
         private CadastrBDEntities1 _entities = new CadastrBDEntities1();
-        
+
         /*21.12.2018
         private static readonly ApplicationDbContext _appContext = new ApplicationDbContext();
         public static IEnumerable<AspNetUsers> GetRemRequestForClient(string id)
@@ -19,7 +19,30 @@ namespace CadastrProject.DAO
             return _appContext.AspNetUsers.Where(s => s.Id == id);
         }
         */
-        public List<Removal_Request> GetAllRequest()
+        public Removal_Request getRequest(int id)
+        {
+            return (from c in _entities.Removal_Request.Include("Group")
+                    where c.Id == id
+                    select c).FirstOrDefault();
+        }
+
+        public bool addRequest(Removal_Request request)
+        {
+            try
+            {
+                _entities.Removal_Request.Add(request);
+                _entities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        
+         public List<Removal_Request> GetAllRequest()
         {
             Connect();
             List<Removal_Request> requestList = new List<Removal_Request>();
@@ -50,7 +73,7 @@ namespace CadastrProject.DAO
             finally { Disconnect(); }
             return requestList;
         }
-        
+        /*
         public bool AddRequest(Removal_Request request)
         {
             bool result = true;
@@ -76,7 +99,7 @@ namespace CadastrProject.DAO
             }
             finally { Disconnect(); }
             return result;
-        }
+        }*/
 
         public void EditRequest(Removal_Request request)
         {
